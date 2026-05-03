@@ -1,0 +1,13 @@
+{
+  "name": "Vertiv Alarm",
+  "description": "Structure documentation for the Vertiv Environet Alert alarm entity",
+  "fields": [
+    { "name": "alarmId", "type": "string", "required": true, "description": "Unique alarm identifier" },
+    { "name": "alarmSource", "type": "string", "required": true, "description": "Source device or asset generating the alarm" },
+    { "name": "severity", "type": "enum", "required": true, "values": ["ALARM", "WARNING", "INFO"], "description": "Alarm severity level" },
+    { "name": "message", "type": "string", "required": true, "description": "Alarm message with threshold and current values" },
+    { "name": "timestamp", "type": "datetime", "required": true, "description": "UTC timestamp when alarm was triggered" },
+    { "name": "siteName", "type": "string", "required": false, "description": "Data center site name" },
+    { "name": "acknowledged", "type": "boolean", "required": false, "description": "Whether alarm has been acknowledged" }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://{environet-host}/api/sensors?deviceName=Environet-Sensor-Hub-Rack-A1",
+    "headers": {
+      "X-Auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIn0.abc123"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "sensorId": "SEN-001",
+        "sensorName": "Intake-Temperature-Front",
+        "deviceName": "Environet-Sensor-Hub-Rack-A1",
+        "siteName": "DC-East-Primary",
+        "sensorType": "temperature",
+        "value": 35.2,
+        "unit": "C",
+        "status": "ALARM",
+        "lastUpdated": "2026-05-03T14:22:10Z"
+      },
+      {
+        "sensorId": "SEN-002",
+        "sensorName": "Humidity-Rack-A1",
+        "deviceName": "Environet-Sensor-Hub-Rack-A1",
+        "siteName": "DC-East-Primary",
+        "sensorType": "humidity",
+        "value": 45.0,
+        "unit": "%",
+        "status": "NORMAL",
+        "lastUpdated": "2026-05-03T14:22:10Z"
+      },
+      {
+        "sensorId": "SEN-003",
+        "sensorName": "Door-Position-Rear",
+        "deviceName": "Environet-Sensor-Hub-Rack-A1",
+        "siteName": "DC-East-Primary",
+        "sensorType": "door",
+        "value": 0,
+        "unit": "open/closed",
+        "status": "NORMAL",
+        "lastUpdated": "2026-05-03T14:20:00Z"
+      }
+    ]
+  }
+}

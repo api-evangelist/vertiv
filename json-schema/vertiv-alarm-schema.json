@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json",
+  "title": "Vertiv Alarm",
+  "description": "An active alarm in the Vertiv Environet Alert DCIM monitoring system",
+  "type": "object",
+  "properties": {
+    "alarmId": {
+      "type": "string",
+      "description": "Unique alarm identifier"
+    },
+    "alarmSource": {
+      "type": "string",
+      "description": "Source device, sensor, or asset generating the alarm"
+    },
+    "severity": {
+      "type": "string",
+      "description": "Alarm severity level",
+      "enum": ["ALARM", "WARNING", "INFO"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Descriptive alarm message with threshold and current values"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when the alarm was triggered"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Data center site name where the alarm originated"
+    },
+    "acknowledged": {
+      "type": "boolean",
+      "description": "Whether the alarm has been acknowledged by an operator"
+    }
+  },
+  "required": ["alarmId", "alarmSource", "severity", "message", "timestamp"]
+}

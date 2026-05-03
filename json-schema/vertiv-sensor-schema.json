@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-sensor-schema.json",
+  "title": "Vertiv Sensor",
+  "description": "An environmental sensor data point in the Vertiv Environet monitoring system",
+  "type": "object",
+  "properties": {
+    "sensorId": {
+      "type": "string",
+      "description": "Unique sensor identifier"
+    },
+    "sensorName": {
+      "type": "string",
+      "description": "Human-readable sensor name"
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "Parent device hosting this sensor"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Data center site location"
+    },
+    "sensorType": {
+      "type": "string",
+      "description": "Type of environmental sensor",
+      "enum": ["temperature", "humidity", "airflow", "door", "leak", "smoke", "motion", "power"]
+    },
+    "value": {
+      "type": "number",
+      "description": "Current sensor reading value"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement (C, F, %, CFM, open/closed, etc.)"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current sensor status",
+      "enum": ["NORMAL", "ALARM", "WARNING", "UNKNOWN"]
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last sensor reading"
+    }
+  },
+  "required": ["sensorId", "sensorName", "sensorType", "value", "unit"]
+}

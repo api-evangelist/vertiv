@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://{environet-host}/api/devices?siteName=DC-East-Primary",
+    "headers": {
+      "X-Auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIn0.abc123"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "deviceId": "DEV-001",
+        "deviceName": "Environet-Sensor-Hub-Rack-A1",
+        "siteName": "DC-East-Primary",
+        "groupPath": "/DC-East-Primary/Row-A/Rack-A1",
+        "category": "DEVICE",
+        "status": {
+          "overall": "ALARM",
+          "alarmCount": 1,
+          "warningCount": 0,
+          "infoCount": 0,
+          "normalCount": 5
+        },
+        "lastUpdated": "2026-05-03T14:22:10Z"
+      },
+      {
+        "deviceId": "DEV-002",
+        "deviceName": "Geist-PDU-Rack-B3",
+        "siteName": "DC-East-Primary",
+        "groupPath": "/DC-East-Primary/Row-B/Rack-B3",
+        "category": "DEVICE",
+        "status": {
+          "overall": "NORMAL",
+          "alarmCount": 0,
+          "warningCount": 1,
+          "infoCount": 0,
+          "normalCount": 24
+        },
+        "lastUpdated": "2026-05-03T14:25:00Z"
+      }
+    ]
+  }
+}

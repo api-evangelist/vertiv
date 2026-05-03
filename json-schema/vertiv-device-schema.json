@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-device-schema.json",
+  "title": "Vertiv Device",
+  "description": "A monitored device in the Vertiv Environet Alert DCIM monitoring system",
+  "type": "object",
+  "properties": {
+    "deviceId": {
+      "type": "string",
+      "description": "Unique device identifier"
+    },
+    "deviceName": {
+      "type": "string",
+      "description": "Human-readable device name"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Data center site where the device is located"
+    },
+    "groupPath": {
+      "type": "string",
+      "description": "Hierarchical group/location path (e.g., /DC-East/Row-A/Rack-A1)"
+    },
+    "category": {
+      "type": "string",
+      "description": "Device category type",
+      "enum": ["DEVICE", "PDU", "UPS", "SENSOR_HUB", "NETWORK"]
+    },
+    "status": {
+      "type": "object",
+      "description": "Device status summary",
+      "properties": {
+        "overall": {
+          "type": "string",
+          "enum": ["NORMAL", "ALARM", "WARNING", "DOWN", "MAINTENANCE", "DISABLED", "FAULT", "UNKNOWN"]
+        },
+        "alarmCount": { "type": "integer", "minimum": 0 },
+        "warningCount": { "type": "integer", "minimum": 0 },
+        "infoCount": { "type": "integer", "minimum": 0 },
+        "normalCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last status update"
+    }
+  },
+  "required": ["deviceId", "deviceName"]
+}

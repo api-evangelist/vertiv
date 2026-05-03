@@ -1,0 +1,125 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "vertiv": "https://www.vertiv.com/vocabulary/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Alarm": "vertiv:Alarm",
+    "Device": "vertiv:Device",
+    "Sensor": "vertiv:Sensor",
+    "Rack": "vertiv:Rack",
+    "Circuit": "vertiv:Circuit",
+    "Asset": "vertiv:Asset",
+    "DataCenter": "schema:Place",
+
+    "alarmId": {
+      "@id": "vertiv:alarmId",
+      "@type": "xsd:string"
+    },
+    "alarmSource": {
+      "@id": "vertiv:alarmSource",
+      "@type": "xsd:string"
+    },
+    "severity": {
+      "@id": "vertiv:severity",
+      "@type": "xsd:string"
+    },
+    "acknowledged": {
+      "@id": "vertiv:acknowledged",
+      "@type": "xsd:boolean"
+    },
+    "deviceId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "deviceName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "siteName": {
+      "@id": "vertiv:siteName",
+      "@type": "xsd:string"
+    },
+    "groupPath": {
+      "@id": "vertiv:groupPath",
+      "@type": "xsd:string"
+    },
+    "sensorId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "sensorName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "sensorType": {
+      "@id": "vertiv:sensorType",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "schema:value",
+      "@type": "xsd:decimal"
+    },
+    "unit": {
+      "@id": "schema:unitText",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "vertiv:status",
+      "@type": "xsd:string"
+    },
+    "lastUpdated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "timestamp": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "message": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "rackId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "rackName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "circuitId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "circuitName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "currentAmps": {
+      "@id": "vertiv:currentAmps",
+      "@type": "xsd:decimal"
+    },
+    "voltageVolts": {
+      "@id": "vertiv:voltageVolts",
+      "@type": "xsd:decimal"
+    },
+    "powerWatts": {
+      "@id": "vertiv:powerWatts",
+      "@type": "xsd:decimal"
+    },
+    "assetId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "assetName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "assetType": {
+      "@id": "vertiv:assetType",
+      "@type": "xsd:string"
+    }
+  }
+}

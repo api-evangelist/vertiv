@@ -1,0 +1,25 @@
+{
+  "name": "Vertiv Device",
+  "description": "Structure documentation for the Vertiv Environet DCIM device entity",
+  "fields": [
+    { "name": "deviceId", "type": "string", "required": true, "description": "Unique device identifier" },
+    { "name": "deviceName", "type": "string", "required": true, "description": "Human-readable device name" },
+    { "name": "siteName", "type": "string", "required": false, "description": "Data center site location" },
+    { "name": "groupPath", "type": "string", "required": false, "description": "Hierarchical group/location path" },
+    { "name": "category", "type": "string", "required": false, "description": "Device category type" },
+    {
+      "name": "status",
+      "type": "object",
+      "required": false,
+      "description": "Device status summary",
+      "fields": [
+        { "name": "overall", "type": "enum", "values": ["NORMAL", "ALARM", "WARNING", "DOWN", "MAINTENANCE", "DISABLED", "FAULT", "UNKNOWN"] },
+        { "name": "alarmCount", "type": "integer" },
+        { "name": "warningCount", "type": "integer" },
+        { "name": "infoCount", "type": "integer" },
+        { "name": "normalCount", "type": "integer" }
+      ]
+    },
+    { "name": "lastUpdated", "type": "datetime", "required": false, "description": "Last status update timestamp" }
+  ]
+}

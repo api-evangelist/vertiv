@@ -1,0 +1,146 @@
+vocabulary:
+  name: Vertiv DCIM Vocabulary
+  description: >-
+    Domain vocabulary for Vertiv data center infrastructure management (DCIM),
+    monitoring, power management, and environmental sensing operations.
+  version: '2026-05-03'
+  terms:
+    - term: Alarm
+      definition: >-
+        An active alert triggered when a monitored metric exceeds a configured
+        threshold or a device enters a fault state. Alarms have severity levels:
+        ALARM (critical), WARNING (caution), and INFO (informational).
+      tags:
+        - Alarms
+        - Monitoring
+
+    - term: Asset
+      definition: >-
+        A physical IT device tracked in the DCIM system such as a server,
+        switch, storage device, or other data center hardware. Assets are
+        associated with racks and have status tracking.
+      tags:
+        - Asset Management
+        - DCIM
+
+    - term: Circuit
+      definition: >-
+        An electrical power circuit being monitored for current (amps), voltage
+        (volts), and power consumption (watts). Circuits feed racks, PDUs, and
+        connected equipment.
+      tags:
+        - Circuits
+        - Power Management
+
+    - term: DCIM
+      definition: >-
+        Data Center Infrastructure Management. Software and processes for
+        monitoring, managing, and optimizing data center assets including power,
+        cooling, space, and IT equipment.
+      tags:
+        - DCIM
+
+    - term: Device
+      definition: >-
+        A monitored hardware unit in the Environet system such as a Geist PDU,
+        sensor hub, UPS, or network device. Devices expose sensors and have
+        aggregate status based on child sensor readings.
+      tags:
+        - Devices
+        - Monitoring
+
+    - term: Environet
+      definition: >-
+        Vertiv's flagship DCIM monitoring software platform (Environet Alert and
+        Environet DCIM) for real-time monitoring of data center equipment across
+        hyperscale to edge environments. Provides REST API for third-party
+        integration.
+      tags:
+        - DCIM
+        - Software
+
+    - term: Group Path
+      definition: >-
+        Hierarchical location path in the Environet system representing the
+        physical or logical grouping of equipment (e.g., /Site/Row/Rack).
+      tags:
+        - Organization
+
+    - term: PDU
+      definition: >-
+        Power Distribution Unit. A Geist/Vertiv intelligent rack PDU that
+        distributes and monitors electrical power to individual outlets.
+        Supports REST API for outlet control and energy monitoring.
+      tags:
+        - PDU
+        - Power Management
+
+    - term: Rack
+      definition: >-
+        A standard 19-inch server rack housing IT equipment in a data center.
+        Monitored for temperature, power, and asset inventory through the
+        Environet DCIM system.
+      tags:
+        - DCIM
+        - Racks
+
+    - term: Sensor
+      definition: >-
+        An environmental monitoring data point measuring temperature, humidity,
+        airflow, door position, leak detection, or other physical conditions in
+        or around a rack or data center space.
+      tags:
+        - Environmental Monitoring
+        - Sensors
+
+    - term: Site
+      definition: >-
+        A distinct physical data center location monitored by the Environet
+        system. Sites contain groups, racks, devices, and circuits.
+      tags:
+        - Organization
+
+    - term: Status
+      definition: >-
+        The operational state of a device, sensor, rack, or circuit. Standard
+        Vertiv status values are NORMAL, ALARM, WARNING, DOWN, MAINTENANCE,
+        DISABLED, FAULT, and UNKNOWN.
+      tags:
+        - Monitoring
+        - Status
+
+    - term: UPS
+      definition: >-
+        Uninterruptible Power Supply. A Vertiv Liebert power protection device
+        that provides battery backup and power conditioning for critical IT
+        equipment. Monitored via SNMP, Modbus, or proprietary API.
+      tags:
+        - Power Management
+        - UPS
+
+    - term: Avocent
+      definition: >-
+        Vertiv's brand for IT management hardware and software including KVM
+        switches, console servers, and management platforms (DSView, MP1000,
+        ADX). Avocent products expose REST APIs for remote management.
+      tags:
+        - Avocent
+        - IT Management
+
+    - term: KVM
+      definition: >-
+        Keyboard, Video, Mouse. Remote access technology for managing physical
+        servers. Avocent KVM systems provide secure out-of-band management via
+        REST API.
+      tags:
+        - Avocent
+        - IT Management
+
+    - term: Out-of-Band Management
+      definition: >-
+        Server management via a dedicated path separate from the in-band
+        production network. Avocent console servers and management platforms
+        provide out-of-band management via serial console and KVM.
+      tags:
+        - Avocent
+        - IT Management

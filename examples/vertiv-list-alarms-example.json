@@ -1,0 +1,35 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://{environet-host}/api/alarms?severity=ALARM",
+    "headers": {
+      "X-Auth-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIn0.abc123"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "alarmId": "ALM-001",
+        "alarmSource": "ServerRoom-Temp-Sensor-1",
+        "severity": "ALARM",
+        "message": "Temperature exceeded threshold: 35.2°C (limit: 30°C)",
+        "timestamp": "2026-05-03T14:22:10Z",
+        "siteName": "DC-East-Primary",
+        "acknowledged": false
+      },
+      {
+        "alarmId": "ALM-002",
+        "alarmSource": "PDU-Rack-B3-Circuit-2",
+        "severity": "WARNING",
+        "message": "Circuit load at 85% capacity: 38.25A of 45A",
+        "timestamp": "2026-05-03T13:45:00Z",
+        "siteName": "DC-East-Primary",
+        "acknowledged": true
+      }
+    ]
+  }
+}
