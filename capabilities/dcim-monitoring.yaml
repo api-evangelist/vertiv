@@ -1,281 +1,462 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Vertiv DCIM Monitoring"
-  description: >-
-    Unified DCIM monitoring capability composing Vertiv Environet Alert API
-    resources for data center infrastructure monitoring. Provides data center
-    operators with a unified view of devices, alarms, environmental sensors,
-    power circuits, racks, and IT assets through a single REST and MCP
-    interface. Designed for NOC teams, data center managers, and infrastructure
+  label: Vertiv DCIM Monitoring
+  description: Unified DCIM monitoring capability composing Vertiv Environet Alert API resources for data center infrastructure
+    monitoring. Provides data center operators with a unified view of devices, alarms, environmental sensors, power circuits,
+    racks, and IT assets through a single REST and MCP interface. Designed for NOC teams, data center managers, and infrastructure
     automation workflows.
   tags:
-    - Alarms
-    - Asset Management
-    - DCIM
-    - Environmental Monitoring
-    - Infrastructure Monitoring
-    - Operations
-    - Power Management
-    - Sensors
-    - Vertiv
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Alarms
+  - Asset Management
+  - DCIM
+  - Environmental Monitoring
+  - Infrastructure Monitoring
+  - Operations
+  - Power Management
+  - Sensors
+  - Vertiv
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      VERTIV_ENVIRONET_TOKEN: VERTIV_ENVIRONET_TOKEN
-      VERTIV_ENVIRONET_HOST: VERTIV_ENVIRONET_HOST
-
+- namespace: env
+  keys:
+    VERTIV_ENVIRONET_TOKEN: VERTIV_ENVIRONET_TOKEN
+    VERTIV_ENVIRONET_HOST: VERTIV_ENVIRONET_HOST
 capability:
   consumes:
-    - import: environet
-      location: ./shared/environet-alert.yaml
-
+  - type: http
+    namespace: environet
+    baseUri: https://{{env.VERTIV_ENVIRONET_HOST}}/api
+    description: Vertiv Environet Alert REST API for DCIM monitoring
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.VERTIV_ENVIRONET_TOKEN}}'
+      placement: header
+    resources:
+    - name: authentication
+      path: /auth
+      description: Session authentication management
+      operations:
+      - name: authenticate
+        method: POST
+        description: Authenticate and Get Session Token
+        body:
+          type: form
+          data:
+            username: '{{tools.username}}'
+            password: '{{tools.password}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasets
+      path: /datasets
+      description: Top-level data set entity catalog
+      operations:
+      - name: list-datasets
+        method: GET
+        description: List All Data Sets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-dataset-by-category
+        method: GET
+        description: Get Data Set by Category
+        inputParameters:
+        - name: category
+          in: path
+          type: string
+          required: true
+          description: The data set category (GROUP, LOCATION, RACK, DEVICE, CIRCUIT, POINT, ALARM)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: devices
+      path: /devices
+      description: Monitored devices in the DCIM system
+      operations:
+      - name: list-devices
+        method: GET
+        description: List All Devices
+        inputParameters:
+        - name: siteName
+          in: query
+          type: string
+          required: false
+          description: Filter by site name
+        - name: groupPath
+          in: query
+          type: string
+          required: false
+          description: Filter by group path
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by device status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-device
+        method: GET
+        description: Get Device by ID
+        inputParameters:
+        - name: deviceId
+          in: path
+          type: string
+          required: true
+          description: Unique device identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: alarms
+      path: /alarms
+      description: Active alarms and alert management
+      operations:
+      - name: list-alarms
+        method: GET
+        description: List Active Alarms
+        inputParameters:
+        - name: severity
+          in: query
+          type: string
+          required: false
+          description: Filter by alarm severity (ALARM, WARNING, INFO)
+        - name: alarmSource
+          in: query
+          type: string
+          required: false
+          description: Filter by alarm source device
+        - name: siteName
+          in: query
+          type: string
+          required: false
+          description: Filter by site name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: racks
+      path: /racks
+      description: Data center rack monitoring
+      operations:
+      - name: list-racks
+        method: GET
+        description: List All Racks
+        inputParameters:
+        - name: rackName
+          in: query
+          type: string
+          required: false
+          description: Filter by rack name
+        - name: siteName
+          in: query
+          type: string
+          required: false
+          description: Filter by site name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: circuits
+      path: /circuits
+      description: Electrical circuit monitoring
+      operations:
+      - name: list-circuits
+        method: GET
+        description: List All Circuits
+        inputParameters:
+        - name: circuitName
+          in: query
+          type: string
+          required: false
+          description: Filter by circuit name
+        - name: siteName
+          in: query
+          type: string
+          required: false
+          description: Filter by site name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: assets
+      path: /assets
+      description: IT asset inventory
+      operations:
+      - name: list-assets
+        method: GET
+        description: List All Assets
+        inputParameters:
+        - name: assetName
+          in: query
+          type: string
+          required: false
+          description: Filter by asset name
+        - name: rackName
+          in: query
+          type: string
+          required: false
+          description: Filter by rack name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sensors
+      path: /sensors
+      description: Environmental sensor data points
+      operations:
+      - name: list-sensors
+        method: GET
+        description: List All Sensor Points
+        inputParameters:
+        - name: deviceName
+          in: query
+          type: string
+          required: false
+          description: Filter by parent device name
+        - name: siteName
+          in: query
+          type: string
+          required: false
+          description: Filter by site name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: dcim-monitoring-api
-      description: "Unified REST API for data center infrastructure monitoring via Vertiv Environet."
-      resources:
-        - path: /v1/devices
-          name: devices
-          description: "All monitored DCIM devices"
-          operations:
-            - method: GET
-              name: list-devices
-              description: "List All Devices"
-              call: "environet.list-devices"
-              with:
-                siteName: "rest.siteName"
-                groupPath: "rest.groupPath"
-                status: "rest.status"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/devices/{deviceId}
-          name: device
-          description: "Single monitored device"
-          operations:
-            - method: GET
-              name: get-device
-              description: "Get Device by ID"
-              call: "environet.get-device"
-              with:
-                deviceId: "rest.deviceId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/alarms
-          name: alarms
-          description: "Active alarms across all data center infrastructure"
-          operations:
-            - method: GET
-              name: list-alarms
-              description: "List Active Alarms"
-              call: "environet.list-alarms"
-              with:
-                severity: "rest.severity"
-                alarmSource: "rest.alarmSource"
-                siteName: "rest.siteName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/sensors
-          name: sensors
-          description: "Environmental sensor data points"
-          operations:
-            - method: GET
-              name: list-sensors
-              description: "List All Sensor Points"
-              call: "environet.list-sensors"
-              with:
-                deviceName: "rest.deviceName"
-                siteName: "rest.siteName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/racks
-          name: racks
-          description: "Data center rack inventory and status"
-          operations:
-            - method: GET
-              name: list-racks
-              description: "List All Racks"
-              call: "environet.list-racks"
-              with:
-                rackName: "rest.rackName"
-                siteName: "rest.siteName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/circuits
-          name: circuits
-          description: "Electrical circuit monitoring and power readings"
-          operations:
-            - method: GET
-              name: list-circuits
-              description: "List All Circuits"
-              call: "environet.list-circuits"
-              with:
-                circuitName: "rest.circuitName"
-                siteName: "rest.siteName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/assets
-          name: assets
-          description: "IT asset inventory"
-          operations:
-            - method: GET
-              name: list-assets
-              description: "List All Assets"
-              call: "environet.list-assets"
-              with:
-                assetName: "rest.assetName"
-                rackName: "rest.rackName"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/datasets
-          name: datasets
-          description: "Top-level data set entity catalog"
-          operations:
-            - method: GET
-              name: list-datasets
-              description: "List All Data Sets"
-              call: "environet.list-datasets"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: dcim-monitoring-mcp
-      transport: http
-      description: "MCP server for AI-assisted data center infrastructure monitoring."
-      tools:
-        - name: list-devices
-          description: >-
-            List all monitored DCIM devices. Filter by site name, group path,
-            or status (NORMAL, ALARM, WARNING, DOWN, MAINTENANCE, DISABLED).
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-devices"
-          with:
-            siteName: "tools.siteName"
-            groupPath: "tools.groupPath"
-            status: "tools.status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-device
-          description: "Get detailed information about a specific monitored device by its ID."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "environet.get-device"
-          with:
-            deviceId: "tools.deviceId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-alarms
-          description: >-
-            List all active alarms across data center infrastructure. Filter
-            by severity (ALARM, WARNING, INFO), alarm source device name, or
-            site name.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-alarms"
-          with:
-            severity: "tools.severity"
-            alarmSource: "tools.alarmSource"
-            siteName: "tools.siteName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-sensors
-          description: >-
-            List all environmental sensor data points including temperature,
-            humidity, airflow, door position, and leak detection sensors.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-sensors"
-          with:
-            deviceName: "tools.deviceName"
-            siteName: "tools.siteName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-racks
-          description: >-
-            List all monitored racks in the data center with status and
-            capacity information.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-racks"
-          with:
-            rackName: "tools.rackName"
-            siteName: "tools.siteName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-circuits
-          description: >-
-            List all electrical circuits with current (amps), voltage, and
-            power (watts) readings.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-circuits"
-          with:
-            circuitName: "tools.circuitName"
-            siteName: "tools.siteName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-assets
-          description: >-
-            List all IT assets tracked in the DCIM system including servers,
-            network equipment, and other data center hardware.
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-assets"
-          with:
-            assetName: "tools.assetName"
-            rackName: "tools.rackName"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-datasets
-          description: >-
-            List all top-level data set entity categories available in the
-            Environet system (GROUP, LOCATION, RACK, DEVICE, CIRCUIT, etc.)
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "environet.list-datasets"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: dcim-monitoring-api
+    description: Unified REST API for data center infrastructure monitoring via Vertiv Environet.
+    resources:
+    - path: /v1/devices
+      name: devices
+      description: All monitored DCIM devices
+      operations:
+      - method: GET
+        name: list-devices
+        description: List All Devices
+        call: environet.list-devices
+        with:
+          siteName: rest.siteName
+          groupPath: rest.groupPath
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/devices/{deviceId}
+      name: device
+      description: Single monitored device
+      operations:
+      - method: GET
+        name: get-device
+        description: Get Device by ID
+        call: environet.get-device
+        with:
+          deviceId: rest.deviceId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alarms
+      name: alarms
+      description: Active alarms across all data center infrastructure
+      operations:
+      - method: GET
+        name: list-alarms
+        description: List Active Alarms
+        call: environet.list-alarms
+        with:
+          severity: rest.severity
+          alarmSource: rest.alarmSource
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sensors
+      name: sensors
+      description: Environmental sensor data points
+      operations:
+      - method: GET
+        name: list-sensors
+        description: List All Sensor Points
+        call: environet.list-sensors
+        with:
+          deviceName: rest.deviceName
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/racks
+      name: racks
+      description: Data center rack inventory and status
+      operations:
+      - method: GET
+        name: list-racks
+        description: List All Racks
+        call: environet.list-racks
+        with:
+          rackName: rest.rackName
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/circuits
+      name: circuits
+      description: Electrical circuit monitoring and power readings
+      operations:
+      - method: GET
+        name: list-circuits
+        description: List All Circuits
+        call: environet.list-circuits
+        with:
+          circuitName: rest.circuitName
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/assets
+      name: assets
+      description: IT asset inventory
+      operations:
+      - method: GET
+        name: list-assets
+        description: List All Assets
+        call: environet.list-assets
+        with:
+          assetName: rest.assetName
+          rackName: rest.rackName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/datasets
+      name: datasets
+      description: Top-level data set entity catalog
+      operations:
+      - method: GET
+        name: list-datasets
+        description: List All Data Sets
+        call: environet.list-datasets
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: dcim-monitoring-mcp
+    transport: http
+    description: MCP server for AI-assisted data center infrastructure monitoring.
+    tools:
+    - name: list-devices
+      description: List all monitored DCIM devices. Filter by site name, group path, or status (NORMAL, ALARM, WARNING, DOWN,
+        MAINTENANCE, DISABLED).
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-devices
+      with:
+        siteName: tools.siteName
+        groupPath: tools.groupPath
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-device
+      description: Get detailed information about a specific monitored device by its ID.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: environet.get-device
+      with:
+        deviceId: tools.deviceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-alarms
+      description: List all active alarms across data center infrastructure. Filter by severity (ALARM, WARNING, INFO), alarm
+        source device name, or site name.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-alarms
+      with:
+        severity: tools.severity
+        alarmSource: tools.alarmSource
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sensors
+      description: List all environmental sensor data points including temperature, humidity, airflow, door position, and
+        leak detection sensors.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-sensors
+      with:
+        deviceName: tools.deviceName
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-racks
+      description: List all monitored racks in the data center with status and capacity information.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-racks
+      with:
+        rackName: tools.rackName
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-circuits
+      description: List all electrical circuits with current (amps), voltage, and power (watts) readings.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-circuits
+      with:
+        circuitName: tools.circuitName
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-assets
+      description: List all IT assets tracked in the DCIM system including servers, network equipment, and other data center
+        hardware.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-assets
+      with:
+        assetName: tools.assetName
+        rackName: tools.rackName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-datasets
+      description: List all top-level data set entity categories available in the Environet system (GROUP, LOCATION, RACK,
+        DEVICE, CIRCUIT, etc.)
+      hints:
+        readOnly: true
+        openWorld: true
+      call: environet.list-datasets
+      outputParameters:
+      - type: object
+        mapping: $.
