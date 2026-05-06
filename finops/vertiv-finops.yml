@@ -8,167 +8,63 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Vertiv
 providerId: vertiv
-publisherName: Vertiv
-serviceCategory: API
+publisherName: Vertiv Group Corporation
+serviceCategory: Data Center Infrastructure
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Critical Infrastructure
-  - Data Center
-  - DCIM
-  - Infrastructure Monitoring
-  - Power Management
-  - UPS
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Vertiv API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+  - Data Center
+  - Power Management
+  - Hardware
+description: Vertiv is a hardware + service provider for data-center power and thermal management.
+  Spend is dominated by capex (hardware purchase) and service contracts rather than metered API
+  billing, so the FinOps surface is a Contact Sales placeholder.
+sources:
+  - https://www.vertiv.com/en-us/
+notes: No metered API billing or FOCUS-aligned cost-and-usage feed is published; meters describe
+  the categories typical Vertiv invoices contain.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Hardware + Service Contract
+  billingFrequency: Per-Invoice
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
+    - Usage
     - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Vertiv
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Data Center Infrastructure
   ProviderName: Vertiv
-  PublisherName: Vertiv
-  InvoiceIssuerName: Vertiv
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Vertiv Group Corporation
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: hardware_purchase
+    unit: unit
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - product_family
+  - name: service_contract
+    unit: month
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Vertiv Environet Alert REST API
-    baseURL: ''
-    tags:
-      - Alerts
-      - Asset Management
-      - DCIM
-      - Environmental Monitoring
-      - Infrastructure Monitoring
-      - Sensors
-    serviceName: Vertiv Environet Alert REST API
-    serviceCategory: API
-  - name: Vertiv Avocent ADX Ecosystem API
-    baseURL: ''
-    tags:
-      - Avocent
-      - IT Management
-      - KVM
-      - Server Management
-    serviceName: Vertiv Avocent ADX Ecosystem API
-    serviceCategory: API
-  - name: Vertiv Avocent DSView API
-    baseURL: ''
-    tags:
-      - Avocent
-      - DSView
-      - IT Management
-      - KVM
-      - Session Management
-    serviceName: Vertiv Avocent DSView API
-    serviceCategory: API
-  - name: Vertiv Geist PDU REST API
-    baseURL: ''
-    tags:
-      - Energy Monitoring
-      - Outlet Control
-      - PDU
-      - Power Distribution
-      - Power Management
-    serviceName: Vertiv Geist PDU REST API
-    serviceCategory: API
-  - name: Vertiv Avocent ACS800/8000 REST API
-    baseURL: ''
-    tags:
-      - Avocent
-      - Console Server
-      - Out-of-Band Management
-      - Serial Console
-    serviceName: Vertiv Avocent ACS800/8000 REST API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - contract_type
+      - site
+principles:
+  - name: Visibility
+    description: Visibility comes from the Vertiv invoice and any deployed Vertiv management software
+      (Environet, Trellis, Avocent) for asset and incident telemetry; there is no hosted billing API.
+  - name: Allocation
+    description: Spend is allocated by site / facility against the equipment install base; tag the
+      asset register with cost-center on the consumer side.
+  - name: Optimization
+    description: Cost levers are right-sizing UPS / cooling capacity, multi-year service contracts,
+      and refreshing aging units to lower-PUE families.
+  - name: Accountability
+    description: Facilities / data-center operations typically own Vertiv spend; finance reconciles
+      against multi-year service agreements.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

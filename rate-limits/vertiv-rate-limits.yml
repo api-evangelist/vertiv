@@ -4,107 +4,29 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Vertiv
 providerId: vertiv
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Critical Infrastructure
-  - Data Center
-  - DCIM
-  - Infrastructure Monitoring
-  - Power Management
-  - UPS
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Vertiv API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  - Data Center
+  - Power Management
+  - Enterprise
+description: Vertiv does not publish public rate-limit documentation for its product integrations.
+  Programmatic access (where it exists, e.g. Avocent / Liebert monitoring) is delivered as part of
+  the product or service contract; throughput is governed by the device or the management software
+  rather than a hosted gateway.
+sources:
+  - https://www.vertiv.com/en-us/
+responseCodes: {}
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Vertiv Environet Alert REST API
-      - Vertiv Avocent ADX Ecosystem API
-      - Vertiv Avocent DSView API
-      - Vertiv Geist PDU REST API
-      - Vertiv Avocent ACS800/8000 REST API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Vertiv Environet Alert REST API
-      - Vertiv Avocent ADX Ecosystem API
-      - Vertiv Avocent DSView API
-      - Vertiv Geist PDU REST API
-      - Vertiv Avocent ACS800/8000 REST API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Vertiv Environet Alert REST API
-      - Vertiv Avocent ADX Ecosystem API
-      - Vertiv Avocent DSView API
-      - Vertiv Geist PDU REST API
-      - Vertiv Avocent ACS800/8000 REST API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Vertiv Environet Alert REST API
-      - Vertiv Avocent ADX Ecosystem API
-      - Vertiv Avocent DSView API
-      - Vertiv Geist PDU REST API
-      - Vertiv Avocent ACS800/8000 REST API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Vertiv Environet Alert REST API
-      - Vertiv Avocent ADX Ecosystem API
-      - Vertiv Avocent DSView API
-      - Vertiv Geist PDU REST API
-      - Vertiv Avocent ACS800/8000 REST API
+  - name: Product / contract defined
+    scope: product
+    metric: varies
+    limit: governed by the deployed Vertiv product or service contract; not publicly published
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Product-bound throttling
+    description: Where rate caps exist they are enforced by the Vertiv product (firmware on the
+      managed device or the management software) rather than a public API gateway.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
