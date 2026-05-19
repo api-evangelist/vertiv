@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Vertiv Environet Alert REST API — Data Sets
+  description: 'Vertiv Environet Alert REST API — Data Sets. 2 operations. Lead operation: List All Data Sets. Self-contained
+    Naftiko capability covering one Vertiv business surface.'
+  tags:
+  - Vertiv
+  - Data Sets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERTIV_API_KEY: VERTIV_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: environet-alert-data-sets
+    baseUri: https://{environet-host}/api
+    description: Vertiv Environet Alert REST API — Data Sets business capability. Self-contained, no shared references.
+    resources:
+    - name: datasets
+      path: /datasets
+      operations:
+      - name: listdatasets
+        method: GET
+        description: List All Data Sets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: datasets-category
+      path: /datasets/{category}
+      operations:
+      - name: getdatasetbycategory
+        method: GET
+        description: Get Data Set by Category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category
+          in: path
+          type: string
+          description: The data set category to retrieve
+          required: true
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.VERTIV_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: environet-alert-data-sets-rest
+    port: 8080
+    description: REST adapter for Vertiv Environet Alert REST API — Data Sets. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/datasets
+      name: datasets
+      description: REST surface for datasets.
+      operations:
+      - method: GET
+        name: listdatasets
+        description: List All Data Sets
+        call: environet-alert-data-sets.listdatasets
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/datasets/{category}
+      name: datasets-category
+      description: REST surface for datasets-category.
+      operations:
+      - method: GET
+        name: getdatasetbycategory
+        description: Get Data Set by Category
+        call: environet-alert-data-sets.getdatasetbycategory
+        with:
+          category: rest.category
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: environet-alert-data-sets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Vertiv Environet Alert REST API — Data Sets. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-data-sets
+      description: List All Data Sets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: environet-alert-data-sets.listdatasets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-set-category
+      description: Get Data Set by Category
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: environet-alert-data-sets.getdatasetbycategory
+      with:
+        category: tools.category
+      outputParameters:
+      - type: object
+        mapping: $.

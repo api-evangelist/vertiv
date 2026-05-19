@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Vertiv Environet Alert REST API — Assets
+  description: 'Vertiv Environet Alert REST API — Assets. 1 operations. Lead operation: List All Assets. Self-contained Naftiko
+    capability covering one Vertiv business surface.'
+  tags:
+  - Vertiv
+  - Assets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERTIV_API_KEY: VERTIV_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: environet-alert-assets
+    baseUri: https://{environet-host}/api
+    description: Vertiv Environet Alert REST API — Assets business capability. Self-contained, no shared references.
+    resources:
+    - name: assets
+      path: /assets
+      operations:
+      - name: listassets
+        method: GET
+        description: List All Assets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assetName
+          in: query
+          type: string
+          description: Filter by asset name
+        - name: rackName
+          in: query
+          type: string
+          description: Filter by rack name
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.VERTIV_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: environet-alert-assets-rest
+    port: 8080
+    description: REST adapter for Vertiv Environet Alert REST API — Assets. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/assets
+      name: assets
+      description: REST surface for assets.
+      operations:
+      - method: GET
+        name: listassets
+        description: List All Assets
+        call: environet-alert-assets.listassets
+        with:
+          assetName: rest.assetName
+          rackName: rest.rackName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: environet-alert-assets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Vertiv Environet Alert REST API — Assets. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-assets
+      description: List All Assets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: environet-alert-assets.listassets
+      with:
+        assetName: tools.assetName
+        rackName: tools.rackName
+      outputParameters:
+      - type: object
+        mapping: $.

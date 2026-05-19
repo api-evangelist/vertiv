@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Vertiv Environet Alert REST API — Sensors
+  description: 'Vertiv Environet Alert REST API — Sensors. 1 operations. Lead operation: List All Sensor Points. Self-contained
+    Naftiko capability covering one Vertiv business surface.'
+  tags:
+  - Vertiv
+  - Sensors
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    VERTIV_API_KEY: VERTIV_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: environet-alert-sensors
+    baseUri: https://{environet-host}/api
+    description: Vertiv Environet Alert REST API — Sensors business capability. Self-contained, no shared references.
+    resources:
+    - name: sensors
+      path: /sensors
+      operations:
+      - name: listsensors
+        method: GET
+        description: List All Sensor Points
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deviceName
+          in: query
+          type: string
+          description: Filter by parent device name
+        - name: siteName
+          in: query
+          type: string
+          description: Filter by site name
+    authentication:
+      type: apikey
+      key: X-Auth-Token
+      value: '{{env.VERTIV_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: environet-alert-sensors-rest
+    port: 8080
+    description: REST adapter for Vertiv Environet Alert REST API — Sensors. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/sensors
+      name: sensors
+      description: REST surface for sensors.
+      operations:
+      - method: GET
+        name: listsensors
+        description: List All Sensor Points
+        call: environet-alert-sensors.listsensors
+        with:
+          deviceName: rest.deviceName
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: environet-alert-sensors-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Vertiv Environet Alert REST API — Sensors. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-sensor-points
+      description: List All Sensor Points
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: environet-alert-sensors.listsensors
+      with:
+        deviceName: tools.deviceName
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
