@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Asset",
+  "title": "Asset",
+  "type": "object",
+  "description": "An IT asset tracked in the Environet system",
+  "properties": {
+    "assetId": {
+      "type": "string",
+      "description": "Unique asset identifier"
+    },
+    "assetName": {
+      "type": "string",
+      "description": "Asset display name"
+    },
+    "rackName": {
+      "type": "string",
+      "description": "Rack the asset is mounted in"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Site location"
+    },
+    "assetType": {
+      "type": "string",
+      "description": "Type of asset (server, switch, etc.)"
+    },
+    "status": {
+      "$ref": "#/components/schemas/StatusSummary"
+    }
+  }
+}

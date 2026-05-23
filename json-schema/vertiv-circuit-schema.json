@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Circuit",
+  "title": "Circuit",
+  "type": "object",
+  "description": "An electrical circuit being monitored",
+  "properties": {
+    "circuitId": {
+      "type": "string",
+      "description": "Unique circuit identifier"
+    },
+    "circuitName": {
+      "type": "string",
+      "description": "Circuit display name"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Site location"
+    },
+    "currentAmps": {
+      "type": "number",
+      "format": "float",
+      "description": "Current load in amps"
+    },
+    "voltageVolts": {
+      "type": "number",
+      "format": "float",
+      "description": "Voltage reading"
+    },
+    "powerWatts": {
+      "type": "number",
+      "format": "float",
+      "description": "Power consumption in watts"
+    },
+    "status": {
+      "$ref": "#/components/schemas/StatusSummary"
+    }
+  }
+}

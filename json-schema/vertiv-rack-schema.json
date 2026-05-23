@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rack",
+  "title": "Rack",
+  "type": "object",
+  "description": "A monitored rack in the data center",
+  "properties": {
+    "rackId": {
+      "type": "string",
+      "description": "Unique rack identifier"
+    },
+    "rackName": {
+      "type": "string",
+      "description": "Rack display name"
+    },
+    "siteName": {
+      "type": "string",
+      "description": "Site location of the rack"
+    },
+    "groupPath": {
+      "type": "string",
+      "description": "Hierarchical location path"
+    },
+    "status": {
+      "$ref": "#/components/schemas/StatusSummary"
+    }
+  }
+}

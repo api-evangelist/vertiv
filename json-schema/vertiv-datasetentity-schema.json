@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSetEntity",
+  "title": "DataSetEntity",
+  "type": "object",
+  "description": "A top-level data set entity representing a category of infrastructure data",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "Data category identifier",
+      "enum": [
+        "GROUP",
+        "LOCATION",
+        "RACK",
+        "ASSET",
+        "DEVICE",
+        "CIRCUIT",
+        "POINT",
+        "Tenant",
+        "Maintenance",
+        "ALARM"
+      ]
+    },
+    "categoryId": {
+      "type": "string",
+      "description": "Unique category ID"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable display name"
+    },
+    "path": {
+      "type": "string",
+      "description": "Hierarchical path in the Environet system"
+    },
+    "status": {
+      "$ref": "#/components/schemas/StatusSummary"
+    },
+    "links": {
+      "type": "array",
+      "description": "Related resource links",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rel": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "description": "Child entities within this category",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

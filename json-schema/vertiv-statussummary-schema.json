@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StatusSummary",
+  "title": "StatusSummary",
+  "type": "object",
+  "description": "Status summary with alarm and event counts",
+  "properties": {
+    "overall": {
+      "type": "string",
+      "description": "Overall status value",
+      "enum": [
+        "NORMAL",
+        "ALARM",
+        "WARNING",
+        "DOWN",
+        "MAINTENANCE",
+        "DISABLED",
+        "FAULT",
+        "UNKNOWN"
+      ]
+    },
+    "alarmCount": {
+      "type": "integer",
+      "description": "Number of active alarms"
+    },
+    "warningCount": {
+      "type": "integer",
+      "description": "Number of active warnings"
+    },
+    "infoCount": {
+      "type": "integer",
+      "description": "Number of informational events"
+    },
+    "downCount": {
+      "type": "integer",
+      "description": "Number of down devices/points"
+    },
+    "faultCount": {
+      "type": "integer",
+      "description": "Number of faults"
+    },
+    "maintenanceCount": {
+      "type": "integer",
+      "description": "Number of items in maintenance mode"
+    },
+    "disabledCount": {
+      "type": "integer",
+      "description": "Number of disabled items"
+    },
+    "normalCount": {
+      "type": "integer",
+      "description": "Number of items in normal state"
+    },
+    "unknownCount": {
+      "type": "integer",
+      "description": "Number of items in unknown state"
+    }
+  }
+}

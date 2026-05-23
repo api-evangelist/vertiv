@@ -1,0 +1,156 @@
+{
+  "provider": "Vertiv",
+  "providerId": "vertiv",
+  "kind": "json-structure",
+  "description": "Structural overview of the Vertiv API surface; extracted from openapi/.",
+  "schemaCount": 9,
+  "operationCount": 10,
+  "schemas": [
+    {
+      "name": "StatusSummary",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "DataSetEntity",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Device",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Alarm",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Rack",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Circuit",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Asset",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Sensor",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/auth",
+      "operationId": "authenticate",
+      "summary": "Authenticate and Get Session Token",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/datasets",
+      "operationId": "listDatasets",
+      "summary": "List All Data Sets",
+      "tags": [
+        "Data Sets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/datasets/{category}",
+      "operationId": "getDatasetByCategory",
+      "summary": "Get Data Set by Category",
+      "tags": [
+        "Data Sets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/devices",
+      "operationId": "listDevices",
+      "summary": "List All Devices",
+      "tags": [
+        "Devices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/devices/{deviceId}",
+      "operationId": "getDevice",
+      "summary": "Get Device by ID",
+      "tags": [
+        "Devices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/alarms",
+      "operationId": "listAlarms",
+      "summary": "List Active Alarms",
+      "tags": [
+        "Alarms"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/racks",
+      "operationId": "listRacks",
+      "summary": "List All Racks",
+      "tags": [
+        "Racks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/circuits",
+      "operationId": "listCircuits",
+      "summary": "List All Circuits",
+      "tags": [
+        "Circuits"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assets",
+      "operationId": "listAssets",
+      "summary": "List All Assets",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sensors",
+      "operationId": "listSensors",
+      "summary": "List All Sensor Points",
+      "tags": [
+        "Sensors"
+      ]
+    }
+  ]
+}
