@@ -1,0 +1,363 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and Get Session Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environet-host}/api/auth",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate with the Environet Alert API using username and password credentials. Returns a session token for use in subsequent API requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Data Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/datasets",
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the top-level list of data set entities available in the Environet Alert system. Each data set entity represents a category of infrastructure data such as groups, locations, racks, assets, devices, circuits, and points."
+        },
+        {
+          "info": {
+            "name": "Get Data Set by Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/datasets/:category",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "The data set category to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns entities for a specific data category. Supported categories include GROUP, LOCATION, RACK, ASSET, DEVICE, CIRCUIT, POINT, Tenant, Maintenance, and ALARM."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/devices",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              },
+              {
+                "name": "groupPath",
+                "value": "",
+                "type": "query",
+                "description": "Filter by group path"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device status"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all monitored devices in the Environet Alert system including device name, status, sensor readings, and metadata."
+        },
+        {
+          "info": {
+            "name": "Get Device by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/devices/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique device identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns detailed information about a specific monitored device."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Active Alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/alarms",
+            "params": [
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter alarms by severity level"
+              },
+              {
+                "name": "alarmSource",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alarm source device or asset name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all active alarms in the Environet Alert system. Includes alarm severity, source device, timestamp, and alarm details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Racks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Racks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/racks",
+            "params": [
+              {
+                "name": "rackName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rack name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all racks monitored by the Environet Alert system with rack-level status, location, and capacity information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Circuits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Circuits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/circuits",
+            "params": [
+              {
+                "name": "circuitName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by circuit name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all electrical circuits monitored by the Environet Alert system including current, voltage, and power readings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/assets",
+            "params": [
+              {
+                "name": "assetName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset name"
+              },
+              {
+                "name": "rackName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rack name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all IT assets tracked in the Environet Alert system including servers, networking equipment, and other data center assets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sensors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Sensor Points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/sensors",
+            "params": [
+              {
+                "name": "deviceName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent device name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all sensor data points (POINT entities) in the Environet Alert system, including temperature, humidity, airflow, door position, and leak detection sensor readings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
