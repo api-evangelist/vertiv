@@ -7,7 +7,7 @@ description: >-
   and KVM), and Liebert (UPS and thermal). Vertiv's software platforms expose REST APIs for integrating with third-party
   systems, automation workflows, and data center management platforms.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Critical Infrastructure
   - Data Center
