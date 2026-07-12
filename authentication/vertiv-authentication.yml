@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/vertiv-environet-alert-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: sessionToken
+  type: apiKey
+  in: header
+  parameter: X-Auth-Token
+  description: Session token obtained from the /auth endpoint
+  sources:
+  - openapi/vertiv-environet-alert-openapi.yml

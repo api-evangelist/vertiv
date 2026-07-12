@@ -111,6 +111,10 @@ apis:
       - type: Documentation
         url: https://www.vertiv.com/48ea81/globalassets/shared/avocent-acs8008000-application-programming-interface_0.pdf
 common:
+  - type: DomainSecurity
+    url: security/vertiv-domain-security.yml
+  - type: Authentication
+    url: authentication/vertiv-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/vertiv
   - url: https://www.vertiv.com/
@@ -145,6 +149,10 @@ common:
     name: Vertiv IS/IT GitHub
     type: GitHubOrganization
     description: Vertiv IS/IT GitHub organization for internal software development.
+  - url: https://www.vertiv.com/en-us/about/news-and-insights/
+    name: Vertiv News and Insights
+    type: Blog
+    description: Vertiv corporate news and insights page listing recent press releases and announcements.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
