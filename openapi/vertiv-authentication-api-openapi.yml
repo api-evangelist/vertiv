@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Vertiv Environet Alert REST Alarms Authentication API
+  description: The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.
+  version: 2.0.0
+  contact:
+    name: Vertiv Support
+    url: https://www.vertiv.com/en-us/support/
+  license:
+    name: Proprietary
+    url: https://www.vertiv.com/
+servers:
+- url: https://{environet-host}/api
+  description: Vertiv Environet Alert instance
+  variables:
+    environet-host:
+      default: localhost
+      description: Hostname or IP address of the Environet Alert installation
+tags:
+- name: Authentication
+paths:
+  /auth:
+    post:
+      operationId: authenticate
+      summary: Authenticate and Get Session Token
+      description: Authenticate with the Environet Alert API using username and password credentials. Returns a session token for use in subsequent API requests.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                username:
+                  type: string
+                  description: Environet Alert username
+                password:
+                  type: string
+                  format: password
+                  description: Environet Alert password
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Session authentication token
+                  expires:
+                    type: string
+                    format: date-time
+                    description: Token expiration timestamp
+        '401':
+          description: Authentication failed - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Session token obtained from the /auth endpoint

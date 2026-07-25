@@ -1,0 +1,195 @@
+openapi: 3.1.0
+info:
+  title: Vertiv Environet Alert REST Alarms Devices API
+  description: The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.
+  version: 2.0.0
+  contact:
+    name: Vertiv Support
+    url: https://www.vertiv.com/en-us/support/
+  license:
+    name: Proprietary
+    url: https://www.vertiv.com/
+servers:
+- url: https://{environet-host}/api
+  description: Vertiv Environet Alert instance
+  variables:
+    environet-host:
+      default: localhost
+      description: Hostname or IP address of the Environet Alert installation
+tags:
+- name: Devices
+paths:
+  /devices:
+    get:
+      operationId: listDevices
+      summary: List All Devices
+      description: Returns a list of all monitored devices in the Environet Alert system including device name, status, sensor readings, and metadata.
+      tags:
+      - Devices
+      security:
+      - sessionToken: []
+      parameters:
+      - name: siteName
+        in: query
+        required: false
+        description: Filter by site name
+        schema:
+          type: string
+      - name: groupPath
+        in: query
+        required: false
+        description: Filter by group path
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        description: Filter by device status
+        schema:
+          type: string
+          enum:
+          - NORMAL
+          - ALARM
+          - WARNING
+          - DOWN
+          - MAINTENANCE
+          - DISABLED
+      responses:
+        '200':
+          description: List of devices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /devices/{deviceId}:
+    get:
+      operationId: getDevice
+      summary: Get Device by ID
+      description: Returns detailed information about a specific monitored device.
+      tags:
+      - Devices
+      security:
+      - sessionToken: []
+      parameters:
+      - name: deviceId
+        in: path
+        required: true
+        description: Unique device identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Device not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+    StatusSummary:
+      type: object
+      description: Status summary with alarm and event counts
+      properties:
+        overall:
+          type: string
+          description: Overall status value
+          enum:
+          - NORMAL
+          - ALARM
+          - WARNING
+          - DOWN
+          - MAINTENANCE
+          - DISABLED
+          - FAULT
+          - UNKNOWN
+        alarmCount:
+          type: integer
+          description: Number of active alarms
+        warningCount:
+          type: integer
+          description: Number of active warnings
+        infoCount:
+          type: integer
+          description: Number of informational events
+        downCount:
+          type: integer
+          description: Number of down devices/points
+        faultCount:
+          type: integer
+          description: Number of faults
+        maintenanceCount:
+          type: integer
+          description: Number of items in maintenance mode
+        disabledCount:
+          type: integer
+          description: Number of disabled items
+        normalCount:
+          type: integer
+          description: Number of items in normal state
+        unknownCount:
+          type: integer
+          description: Number of items in unknown state
+    Device:
+      type: object
+      description: A monitored device in the Environet Alert system
+      properties:
+        deviceId:
+          type: string
+          description: Unique device identifier
+        deviceName:
+          type: string
+          description: Device display name
+        siteName:
+          type: string
+          description: Site where the device is located
+        groupPath:
+          type: string
+          description: Hierarchical group path
+        category:
+          type: string
+          description: Device category
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+        lastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp of the last status update
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Session token obtained from the /auth endpoint

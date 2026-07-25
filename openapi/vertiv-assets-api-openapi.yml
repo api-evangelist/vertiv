@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: Vertiv Environet Alert REST Alarms Assets API
+  description: The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.
+  version: 2.0.0
+  contact:
+    name: Vertiv Support
+    url: https://www.vertiv.com/en-us/support/
+  license:
+    name: Proprietary
+    url: https://www.vertiv.com/
+servers:
+- url: https://{environet-host}/api
+  description: Vertiv Environet Alert instance
+  variables:
+    environet-host:
+      default: localhost
+      description: Hostname or IP address of the Environet Alert installation
+tags:
+- name: Assets
+paths:
+  /assets:
+    get:
+      operationId: listAssets
+      summary: List All Assets
+      description: Returns all IT assets tracked in the Environet Alert system including servers, networking equipment, and other data center assets.
+      tags:
+      - Assets
+      security:
+      - sessionToken: []
+      parameters:
+      - name: assetName
+        in: query
+        required: false
+        description: Filter by asset name
+        schema:
+          type: string
+      - name: rackName
+        in: query
+        required: false
+        description: Filter by rack name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of assets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+    StatusSummary:
+      type: object
+      description: Status summary with alarm and event counts
+      properties:
+        overall:
+          type: string
+          description: Overall status value
+          enum:
+          - NORMAL
+          - ALARM
+          - WARNING
+          - DOWN
+          - MAINTENANCE
+          - DISABLED
+          - FAULT
+          - UNKNOWN
+        alarmCount:
+          type: integer
+          description: Number of active alarms
+        warningCount:
+          type: integer
+          description: Number of active warnings
+        infoCount:
+          type: integer
+          description: Number of informational events
+        downCount:
+          type: integer
+          description: Number of down devices/points
+        faultCount:
+          type: integer
+          description: Number of faults
+        maintenanceCount:
+          type: integer
+          description: Number of items in maintenance mode
+        disabledCount:
+          type: integer
+          description: Number of disabled items
+        normalCount:
+          type: integer
+          description: Number of items in normal state
+        unknownCount:
+          type: integer
+          description: Number of items in unknown state
+    Asset:
+      type: object
+      description: An IT asset tracked in the Environet system
+      properties:
+        assetId:
+          type: string
+          description: Unique asset identifier
+        assetName:
+          type: string
+          description: Asset display name
+        rackName:
+          type: string
+          description: Rack the asset is mounted in
+        siteName:
+          type: string
+          description: Site location
+        assetType:
+          type: string
+          description: Type of asset (server, switch, etc.)
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Session token obtained from the /auth endpoint
