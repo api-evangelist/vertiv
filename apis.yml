@@ -7,7 +7,20 @@ description: >-
   and KVM), and Liebert (UPS and thermal). Vertiv's software platforms expose REST APIs for integrating with third-party
   systems, automation workflows, and data center management platforms.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/vertiv.png
 tags:
   - Critical Infrastructure
   - Data Center
@@ -20,96 +33,227 @@ created: '2026-05-03'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: vertiv:environet-alert-rest-api
-    name: Vertiv Environet Alert REST API
-    description: >-
-      The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform for
-      data centers. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms,
-      circuit information, rack details, and asset management data. Authentication uses HTTP Basic credentials (POST
-      x-www-form-urlencoded). The API supports integration with third-party DCIM, ITSM, and automation platforms.
-    humanURL: https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
-    tags:
-      - Alerts
-      - Asset Management
-      - DCIM
-      - Environmental Monitoring
-      - Infrastructure Monitoring
-      - Sensors
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/openapi/vertiv-environet-alert-openapi.yml
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
-      - type: SpectralRuleset
-        url: https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
-  - aid: vertiv:avocent-adx-ecosystem-api
-    name: Vertiv Avocent ADX Ecosystem API
-    description: >-
-      The Vertiv Avocent ADX Ecosystem API provides REST API access for managing IT infrastructure through the Avocent
-      ADX Management Platform. The API supports device management, KVM session management, user administration, and
-      configuration of server management functions including the MP1000 Management Platform.
-    humanURL: >-
-      https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/digital-infrastructure-solutions/vertiv-avocent-mp1000-management-platform/
-    tags:
-      - Avocent
-      - IT Management
-      - KVM
-      - Server Management
-    properties:
-      - type: Documentation
-        url: https://www.vertiv.com/4a648a/globalassets/shared/vertiv-avocent-adx-ecosystem-api-guide.pdf
-  - aid: vertiv:avocent-dsview-api
-    name: Vertiv Avocent DSView API
-    description: >-
-      The Vertiv Avocent DSView Solution REST API enables launching of KVM, serial, and virtual viewer sessions to
-      managed devices. The API provides programmatic control of session management, device inventory, and user access
-      workflows for the DSView centralized management platform.
-    humanURL: https://www.vertiv.com/en-us/products/monitoring-control--management/vertiv-avocent-dsview-solution/
-    tags:
-      - Avocent
-      - DSView
-      - IT Management
-      - KVM
-      - Session Management
-    properties:
-      - type: Documentation
-        url: >-
-          https://www.vertiv.com/48ee3b/globalassets/products/monitoring-control-and-management/digital-infrastructure-solutions/vertiv-avocent-dsview-solution/vertiv-avocent-dsview-api-tech-note_aug-2023.pdf
-  - aid: vertiv:geist-pdu-rest-api
-    name: Vertiv Geist PDU REST API
-    description: >-
-      The Vertiv Geist Power Distribution Unit (PDU) REST API provides programmatic control of Geist intelligent rack
-      PDUs. The API supports outlet power control (on/off with delay), outlet configuration, device information
-      retrieval, and energy monitoring. Authentication uses token- based auth via POST to the auth endpoint.
-    humanURL: https://www.geistglobal.com/open-api-and-software-integration
-    tags:
-      - Energy Monitoring
-      - Outlet Control
-      - PDU
-      - Power Distribution
-      - Power Management
-    properties:
-      - type: Documentation
-        url: https://www.geistglobal.com/open-api-and-software-integration
-  - aid: vertiv:avocent-acs-api
-    name: Vertiv Avocent ACS800/8000 REST API
-    description: >-
-      The Vertiv Avocent ACS800/8000 Advanced Console System native RESTful API provides programmatic access to serial
-      console server management. The API supports device configuration, port management, user administration, and
-      session management for out-of-band management of network infrastructure.
-    humanURL: https://www.vertiv.com/en-us/products/monitoring-control--management/avocent-embedded-management-systems/
-    tags:
-      - Avocent
-      - Console Server
-      - Out-of-Band Management
-      - Serial Console
-    properties:
-      - type: Documentation
-        url: https://www.vertiv.com/48ea81/globalassets/shared/avocent-acs8008000-application-programming-interface_0.pdf
+- aid: vertiv:avocent-adx-ecosystem-api
+  name: Vertiv Avocent ADX Ecosystem API
+  description: >-
+    The Vertiv Avocent ADX Ecosystem API provides REST API access for managing IT infrastructure through
+    the Avocent ADX Management Platform. The API supports device management, KVM session management, user
+    administration, and configuration of server management functions including the MP1000 Management Platform.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/digital-infrastructure-solutions/vertiv-avocent-mp1000-management-platform/
+  tags:
+  - Avocent
+  - IT Management
+  - KVM
+  - Server Management
+  properties:
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/4a648a/globalassets/shared/vertiv-avocent-adx-ecosystem-api-guide.pdf
+- aid: vertiv:avocent-dsview-api
+  name: Vertiv Avocent DSView API
+  description: >-
+    The Vertiv Avocent DSView Solution REST API enables launching of KVM, serial, and virtual viewer sessions
+    to managed devices. The API provides programmatic control of session management, device inventory,
+    and user access workflows for the DSView centralized management platform.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products/monitoring-control--management/vertiv-avocent-dsview-solution/
+  tags:
+  - Avocent
+  - DSView
+  - IT Management
+  - KVM
+  - Session Management
+  properties:
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ee3b/globalassets/products/monitoring-control-and-management/digital-infrastructure-solutions/vertiv-avocent-dsview-solution/vertiv-avocent-dsview-api-tech-note_aug-2023.pdf
+- aid: vertiv:geist-pdu-rest-api
+  name: Vertiv Geist PDU REST API
+  description: >-
+    The Vertiv Geist Power Distribution Unit (PDU) REST API provides programmatic control of Geist intelligent
+    rack PDUs. The API supports outlet power control (on/off with delay), outlet configuration, device
+    information retrieval, and energy monitoring. Authentication uses token- based auth via POST to the
+    auth endpoint.
+  humanURL: https://www.geistglobal.com/open-api-and-software-integration
+  tags:
+  - Energy Monitoring
+  - Outlet Control
+  - PDU
+  - Power Distribution
+  - Power Management
+  properties:
+  - type: Documentation
+    url: https://www.geistglobal.com/open-api-and-software-integration
+- aid: vertiv:avocent-acs-api
+  name: Vertiv Avocent ACS800/8000 REST API
+  description: >-
+    The Vertiv Avocent ACS800/8000 Advanced Console System native RESTful API provides programmatic access
+    to serial console server management. The API supports device configuration, port management, user
+    administration, and session management for out-of-band management of network infrastructure.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products/monitoring-control--management/avocent-embedded-management-systems/
+  tags:
+  - Avocent
+  - Console Server
+  - Out-of-Band Management
+  - Serial Console
+  properties:
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea81/globalassets/shared/avocent-acs8008000-application-programming-interface_0.pdf
+- aid: vertiv:vertiv-alarms-api
+  name: Vertiv Alarms API
+  description: The Alarms API from Vertiv — 1 operation(s) for alarms.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Alarms
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-alarms-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-assets-api
+  name: Vertiv Assets API
+  description: The Assets API from Vertiv — 1 operation(s) for assets.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-assets-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-authentication-api
+  name: Vertiv Authentication API
+  description: The Authentication API from Vertiv — 1 operation(s) for authentication.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-authentication-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-circuits-api
+  name: Vertiv Circuits API
+  description: The Circuits API from Vertiv — 1 operation(s) for circuits.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Circuits
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-circuits-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-data-sets-api
+  name: Vertiv Data Sets API
+  description: The Data Sets API from Vertiv — 2 operation(s) for data sets.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Data Sets
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-data-sets-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-devices-api
+  name: Vertiv Devices API
+  description: The Devices API from Vertiv — 2 operation(s) for devices.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-devices-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-racks-api
+  name: Vertiv Racks API
+  description: The Racks API from Vertiv — 1 operation(s) for racks.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Racks
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-racks-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-sensors-api
+  name: Vertiv Sensors API
+  description: The Sensors API from Vertiv — 1 operation(s) for sensors.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
+  tags:
+  - Sensors
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-sensors-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/vertiv-agentic-access.yml
