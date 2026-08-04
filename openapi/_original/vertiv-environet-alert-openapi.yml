@@ -1,0 +1,709 @@
+openapi: 3.1.0
+info:
+  title: Vertiv Environet Alert REST API
+  description: >-
+    The Vertiv Environet Alert Public REST API provides programmatic access to
+    Vertiv's DCIM monitoring platform. The API enables retrieval of device data,
+    sensor readings, environmental metrics, alerts, alarms, circuit information,
+    rack details, and asset management data from data center environments.
+    The API is designed for integration with third-party DCIM platforms, ITSM
+    tools, and custom automation workflows.
+  version: 2.0.0
+  contact:
+    name: Vertiv Support
+    url: https://www.vertiv.com/en-us/support/
+  license:
+    name: Proprietary
+    url: https://www.vertiv.com/
+servers:
+  - url: https://{environet-host}/api
+    description: Vertiv Environet Alert instance
+    variables:
+      environet-host:
+        default: localhost
+        description: Hostname or IP address of the Environet Alert installation
+paths:
+  /auth:
+    post:
+      operationId: authenticate
+      summary: Authenticate and Get Session Token
+      description: >-
+        Authenticate with the Environet Alert API using username and password
+        credentials. Returns a session token for use in subsequent API requests.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: Environet Alert username
+                password:
+                  type: string
+                  format: password
+                  description: Environet Alert password
+      responses:
+        '200':
+          description: Authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Session authentication token
+                  expires:
+                    type: string
+                    format: date-time
+                    description: Token expiration timestamp
+        '401':
+          description: Authentication failed - invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /datasets:
+    get:
+      operationId: listDatasets
+      summary: List All Data Sets
+      description: >-
+        Returns the top-level list of data set entities available in the
+        Environet Alert system. Each data set entity represents a category of
+        infrastructure data such as groups, locations, racks, assets, devices,
+        circuits, and points.
+      tags:
+        - Data Sets
+      security:
+        - sessionToken: []
+      responses:
+        '200':
+          description: List of data set entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataSetEntity'
+        '401':
+          description: Unauthorized - missing or invalid session token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /datasets/{category}:
+    get:
+      operationId: getDatasetByCategory
+      summary: Get Data Set by Category
+      description: >-
+        Returns entities for a specific data category. Supported categories
+        include GROUP, LOCATION, RACK, ASSET, DEVICE, CIRCUIT, POINT, Tenant,
+        Maintenance, and ALARM.
+      tags:
+        - Data Sets
+      security:
+        - sessionToken: []
+      parameters:
+        - name: category
+          in: path
+          required: true
+          description: The data set category to retrieve
+          schema:
+            type: string
+            enum:
+              - GROUP
+              - LOCATION
+              - RACK
+              - ASSET
+              - DEVICE
+              - CIRCUIT
+              - POINT
+              - Tenant
+              - Maintenance
+              - ALARM
+      responses:
+        '200':
+          description: Data set entities for the specified category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSetEntity'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /devices:
+    get:
+      operationId: listDevices
+      summary: List All Devices
+      description: >-
+        Returns a list of all monitored devices in the Environet Alert system
+        including device name, status, sensor readings, and metadata.
+      tags:
+        - Devices
+      security:
+        - sessionToken: []
+      parameters:
+        - name: siteName
+          in: query
+          required: false
+          description: Filter by site name
+          schema:
+            type: string
+        - name: groupPath
+          in: query
+          required: false
+          description: Filter by group path
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          description: Filter by device status
+          schema:
+            type: string
+            enum:
+              - NORMAL
+              - ALARM
+              - WARNING
+              - DOWN
+              - MAINTENANCE
+              - DISABLED
+      responses:
+        '200':
+          description: List of devices
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /devices/{deviceId}:
+    get:
+      operationId: getDevice
+      summary: Get Device by ID
+      description: Returns detailed information about a specific monitored device.
+      tags:
+        - Devices
+      security:
+        - sessionToken: []
+      parameters:
+        - name: deviceId
+          in: path
+          required: true
+          description: Unique device identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Device not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /alarms:
+    get:
+      operationId: listAlarms
+      summary: List Active Alarms
+      description: >-
+        Returns all active alarms in the Environet Alert system. Includes alarm
+        severity, source device, timestamp, and alarm details.
+      tags:
+        - Alarms
+      security:
+        - sessionToken: []
+      parameters:
+        - name: severity
+          in: query
+          required: false
+          description: Filter alarms by severity level
+          schema:
+            type: string
+            enum:
+              - ALARM
+              - WARNING
+              - INFO
+        - name: alarmSource
+          in: query
+          required: false
+          description: Filter by alarm source device or asset name
+          schema:
+            type: string
+        - name: siteName
+          in: query
+          required: false
+          description: Filter by site name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of active alarms
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alarm'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /racks:
+    get:
+      operationId: listRacks
+      summary: List All Racks
+      description: >-
+        Returns all racks monitored by the Environet Alert system with
+        rack-level status, location, and capacity information.
+      tags:
+        - Racks
+      security:
+        - sessionToken: []
+      parameters:
+        - name: rackName
+          in: query
+          required: false
+          description: Filter by rack name
+          schema:
+            type: string
+        - name: siteName
+          in: query
+          required: false
+          description: Filter by site name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of racks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rack'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /circuits:
+    get:
+      operationId: listCircuits
+      summary: List All Circuits
+      description: >-
+        Returns all electrical circuits monitored by the Environet Alert system
+        including current, voltage, and power readings.
+      tags:
+        - Circuits
+      security:
+        - sessionToken: []
+      parameters:
+        - name: circuitName
+          in: query
+          required: false
+          description: Filter by circuit name
+          schema:
+            type: string
+        - name: siteName
+          in: query
+          required: false
+          description: Filter by site name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of circuits
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Circuit'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /assets:
+    get:
+      operationId: listAssets
+      summary: List All Assets
+      description: >-
+        Returns all IT assets tracked in the Environet Alert system including
+        servers, networking equipment, and other data center assets.
+      tags:
+        - Assets
+      security:
+        - sessionToken: []
+      parameters:
+        - name: assetName
+          in: query
+          required: false
+          description: Filter by asset name
+          schema:
+            type: string
+        - name: rackName
+          in: query
+          required: false
+          description: Filter by rack name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of assets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Asset'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /sensors:
+    get:
+      operationId: listSensors
+      summary: List All Sensor Points
+      description: >-
+        Returns all sensor data points (POINT entities) in the Environet Alert
+        system, including temperature, humidity, airflow, door position, and
+        leak detection sensor readings.
+      tags:
+        - Sensors
+      security:
+        - sessionToken: []
+      parameters:
+        - name: deviceName
+          in: query
+          required: false
+          description: Filter by parent device name
+          schema:
+            type: string
+        - name: siteName
+          in: query
+          required: false
+          description: Filter by site name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of sensor points
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sensor'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    sessionToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: Session token obtained from the /auth endpoint
+  schemas:
+    StatusSummary:
+      type: object
+      description: Status summary with alarm and event counts
+      properties:
+        overall:
+          type: string
+          description: Overall status value
+          enum:
+            - NORMAL
+            - ALARM
+            - WARNING
+            - DOWN
+            - MAINTENANCE
+            - DISABLED
+            - FAULT
+            - UNKNOWN
+        alarmCount:
+          type: integer
+          description: Number of active alarms
+        warningCount:
+          type: integer
+          description: Number of active warnings
+        infoCount:
+          type: integer
+          description: Number of informational events
+        downCount:
+          type: integer
+          description: Number of down devices/points
+        faultCount:
+          type: integer
+          description: Number of faults
+        maintenanceCount:
+          type: integer
+          description: Number of items in maintenance mode
+        disabledCount:
+          type: integer
+          description: Number of disabled items
+        normalCount:
+          type: integer
+          description: Number of items in normal state
+        unknownCount:
+          type: integer
+          description: Number of items in unknown state
+    DataSetEntity:
+      type: object
+      description: A top-level data set entity representing a category of infrastructure data
+      properties:
+        category:
+          type: string
+          description: Data category identifier
+          enum:
+            - GROUP
+            - LOCATION
+            - RACK
+            - ASSET
+            - DEVICE
+            - CIRCUIT
+            - POINT
+            - Tenant
+            - Maintenance
+            - ALARM
+        categoryId:
+          type: string
+          description: Unique category ID
+        displayName:
+          type: string
+          description: Human-readable display name
+        path:
+          type: string
+          description: Hierarchical path in the Environet system
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+        links:
+          type: array
+          description: Related resource links
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+              href:
+                type: string
+        entries:
+          type: array
+          description: Child entities within this category
+          items:
+            type: object
+    Device:
+      type: object
+      description: A monitored device in the Environet Alert system
+      properties:
+        deviceId:
+          type: string
+          description: Unique device identifier
+        deviceName:
+          type: string
+          description: Device display name
+        siteName:
+          type: string
+          description: Site where the device is located
+        groupPath:
+          type: string
+          description: Hierarchical group path
+        category:
+          type: string
+          description: Device category
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+        lastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp of the last status update
+    Alarm:
+      type: object
+      description: An active alarm in the Environet Alert system
+      properties:
+        alarmId:
+          type: string
+          description: Unique alarm identifier
+        alarmSource:
+          type: string
+          description: Source device or asset generating the alarm
+        severity:
+          type: string
+          description: Alarm severity level
+          enum:
+            - ALARM
+            - WARNING
+            - INFO
+        message:
+          type: string
+          description: Alarm message text
+        timestamp:
+          type: string
+          format: date-time
+          description: Alarm occurrence timestamp
+        siteName:
+          type: string
+          description: Site where the alarm originated
+        acknowledged:
+          type: boolean
+          description: Whether the alarm has been acknowledged
+    Rack:
+      type: object
+      description: A monitored rack in the data center
+      properties:
+        rackId:
+          type: string
+          description: Unique rack identifier
+        rackName:
+          type: string
+          description: Rack display name
+        siteName:
+          type: string
+          description: Site location of the rack
+        groupPath:
+          type: string
+          description: Hierarchical location path
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+    Circuit:
+      type: object
+      description: An electrical circuit being monitored
+      properties:
+        circuitId:
+          type: string
+          description: Unique circuit identifier
+        circuitName:
+          type: string
+          description: Circuit display name
+        siteName:
+          type: string
+          description: Site location
+        currentAmps:
+          type: number
+          format: float
+          description: Current load in amps
+        voltageVolts:
+          type: number
+          format: float
+          description: Voltage reading
+        powerWatts:
+          type: number
+          format: float
+          description: Power consumption in watts
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+    Asset:
+      type: object
+      description: An IT asset tracked in the Environet system
+      properties:
+        assetId:
+          type: string
+          description: Unique asset identifier
+        assetName:
+          type: string
+          description: Asset display name
+        rackName:
+          type: string
+          description: Rack the asset is mounted in
+        siteName:
+          type: string
+          description: Site location
+        assetType:
+          type: string
+          description: Type of asset (server, switch, etc.)
+        status:
+          $ref: '#/components/schemas/StatusSummary'
+    Sensor:
+      type: object
+      description: A sensor data point in the Environet system
+      properties:
+        sensorId:
+          type: string
+          description: Unique sensor identifier
+        sensorName:
+          type: string
+          description: Sensor display name
+        deviceName:
+          type: string
+          description: Parent device name
+        siteName:
+          type: string
+          description: Site location
+        sensorType:
+          type: string
+          description: Type of sensor (temperature, humidity, etc.)
+        value:
+          type: number
+          format: float
+          description: Current sensor reading value
+        unit:
+          type: string
+          description: Unit of measurement (C, F, %, etc.)
+        status:
+          type: string
+          description: Sensor status
+          enum:
+            - NORMAL
+            - ALARM
+            - WARNING
+            - UNKNOWN
+        lastUpdated:
+          type: string
+          format: date-time
+          description: Timestamp of last reading
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details

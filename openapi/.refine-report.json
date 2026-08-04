@@ -1,0 +1,28 @@
+{
+  "provider": "vertiv",
+  "sources": [
+    "vertiv-alarms-api-openapi.yml",
+    "vertiv-assets-api-openapi.yml",
+    "vertiv-authentication-api-openapi.yml",
+    "vertiv-circuits-api-openapi.yml",
+    "vertiv-data-sets-api-openapi.yml",
+    "vertiv-devices-api-openapi.yml",
+    "vertiv-racks-api-openapi.yml",
+    "vertiv-sensors-api-openapi.yml"
+  ],
+  "outputs": [
+    "vertiv-alarms-api-openapi.yml",
+    "vertiv-assets-api-openapi.yml",
+    "vertiv-authentication-api-openapi.yml",
+    "vertiv-circuits-api-openapi.yml",
+    "vertiv-data-sets-api-openapi.yml",
+    "vertiv-devices-api-openapi.yml",
+    "vertiv-racks-api-openapi.yml",
+    "vertiv-sensors-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
