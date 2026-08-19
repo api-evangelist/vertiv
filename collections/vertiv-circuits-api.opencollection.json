@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms Circuits API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Circuits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Circuits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/circuits",
+            "params": [
+              {
+                "name": "circuitName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by circuit name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all electrical circuits monitored by the Environet Alert system including current, voltage, and power readings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

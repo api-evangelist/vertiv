@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms Racks API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Racks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Racks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/racks",
+            "params": [
+              {
+                "name": "rackName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rack name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all racks monitored by the Environet Alert system with rack-level status, location, and capacity information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

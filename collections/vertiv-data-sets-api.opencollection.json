@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms Data Sets API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Data Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/datasets",
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the top-level list of data set entities available in the Environet Alert system. Each data set entity represents a category of infrastructure data such as groups, locations, racks, assets, devices, circuits, and points."
+        },
+        {
+          "info": {
+            "name": "Get Data Set by Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/datasets/:category",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "The data set category to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns entities for a specific data category. Supported categories include GROUP, LOCATION, RACK, ASSET, DEVICE, CIRCUIT, POINT, Tenant, Maintenance, and ALARM."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

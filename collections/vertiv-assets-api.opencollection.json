@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms Assets API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/assets",
+            "params": [
+              {
+                "name": "assetName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset name"
+              },
+              {
+                "name": "rackName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rack name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all IT assets tracked in the Environet Alert system including servers, networking equipment, and other data center assets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

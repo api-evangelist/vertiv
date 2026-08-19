@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms Authentication API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and Get Session Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{environet-host}/api/auth",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticate with the Environet Alert API using username and password credentials. Returns a session token for use in subsequent API requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "f917f23f-f8be-4ea9-bf9b-6a7503e32c8a",
+      "name": "Sensors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "905f9660-7655-48aa-a96a-d67f23a70949",
+          "name": "List All Sensor Points",
+          "request": {
+            "name": "List All Sensor Points",
+            "description": {
+              "content": "Returns all sensor data points (POINT entities) in the Environet Alert system, including temperature, humidity, airflow, door position, and leak detection sensor readings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sensors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "deviceName",
+                  "value": "<string>",
+                  "description": "Filter by parent device name"
+                },
+                {
+                  "disabled": false,
+                  "key": "siteName",
+                  "value": "<string>",
+                  "description": "Filter by site name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "530f300b-07fb-4a7a-aa2f-37e13f74c00f",
+              "name": "List of sensor points",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sensors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "siteName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"sensorId\": \"string\",\n    \"sensorName\": \"string\",\n    \"deviceName\": \"string\",\n    \"siteName\": \"string\",\n    \"sensorType\": \"string\",\n    \"value\": 5175.335167469047,\n    \"unit\": \"string\",\n    \"status\": \"WARNING\",\n    \"lastUpdated\": \"1947-12-02T00:04:33.402Z\"\n  },\n  {\n    \"sensorId\": \"string\",\n    \"sensorName\": \"string\",\n    \"deviceName\": \"string\",\n    \"siteName\": \"string\",\n    \"sensorType\": \"string\",\n    \"value\": 1692.5304075691129,\n    \"unit\": \"string\",\n    \"status\": \"NORMAL\",\n    \"lastUpdated\": \"2003-05-09T18:05:24.708Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2120461-a8ec-4a16-a41a-778e3fed0068",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sensors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "deviceName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "siteName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3375,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Environet Alert installation",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "environet-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environet-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "485b6013-a7cb-43d3-aa2f-288f3456a45e",
+    "name": "Vertiv Environet Alert REST Alarms Sensors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.\n\nContact Support:\n Name: Vertiv Support",
+      "type": "text/plain"
+    }
+  }
+}

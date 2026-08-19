@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Active Alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/alarms",
+            "params": [
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter alarms by severity level"
+              },
+              {
+                "name": "alarmSource",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alarm source device or asset name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all active alarms in the Environet Alert system. Includes alarm severity, source device, timestamp, and alarm details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

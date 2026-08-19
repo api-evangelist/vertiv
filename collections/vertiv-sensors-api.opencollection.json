@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Vertiv Environet Alert REST Alarms Sensors API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sensors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Sensor Points",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{environet-host}/api/sensors",
+            "params": [
+              {
+                "name": "deviceName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by parent device name"
+              },
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by site name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-Auth-Token",
+              "value": "{{X-Auth-Token}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all sensor data points (POINT entities) in the Environet Alert system, including temperature, humidity, airflow, door position, and leak detection sensor readings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

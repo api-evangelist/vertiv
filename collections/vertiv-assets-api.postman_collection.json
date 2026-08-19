@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "677d3449-247c-4800-99fd-c1db105c0e65",
+      "name": "Assets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1320d345-a915-4222-aac7-ca0a7b2ca5b0",
+          "name": "List All Assets",
+          "request": {
+            "name": "List All Assets",
+            "description": {
+              "content": "Returns all IT assets tracked in the Environet Alert system including servers, networking equipment, and other data center assets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assetName",
+                  "value": "<string>",
+                  "description": "Filter by asset name"
+                },
+                {
+                  "disabled": false,
+                  "key": "rackName",
+                  "value": "<string>",
+                  "description": "Filter by rack name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0e2ef49a-5b75-4d0c-a7ce-63d4e16afd32",
+              "name": "List of assets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rackName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"assetId\": \"string\",\n    \"assetName\": \"string\",\n    \"rackName\": \"string\",\n    \"siteName\": \"string\",\n    \"assetType\": \"string\",\n    \"status\": {\n      \"overall\": \"MAINTENANCE\",\n      \"alarmCount\": 6178,\n      \"warningCount\": 3237,\n      \"infoCount\": 3779,\n      \"downCount\": 1432,\n      \"faultCount\": 8508,\n      \"maintenanceCount\": 7594,\n      \"disabledCount\": 4785,\n      \"normalCount\": 8610,\n      \"unknownCount\": 8843\n    }\n  },\n  {\n    \"assetId\": \"string\",\n    \"assetName\": \"string\",\n    \"rackName\": \"string\",\n    \"siteName\": \"string\",\n    \"assetType\": \"string\",\n    \"status\": {\n      \"overall\": \"ALARM\",\n      \"alarmCount\": 956,\n      \"warningCount\": 2117,\n      \"infoCount\": 2295,\n      \"downCount\": 6524,\n      \"faultCount\": 239,\n      \"maintenanceCount\": 1824,\n      \"disabledCount\": 4946,\n      \"normalCount\": 7986,\n      \"unknownCount\": 7629\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4db80aa8-f617-419b-b361-6e367543c518",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rackName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4773,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Environet Alert installation",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "environet-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environet-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a8c5f660-ddde-430e-b4d3-2a10e01600b9",
+    "name": "Vertiv Environet Alert REST Alarms Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.\n\nContact Support:\n Name: Vertiv Support",
+      "type": "text/plain"
+    }
+  }
+}

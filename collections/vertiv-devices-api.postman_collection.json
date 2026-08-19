@@ -1,0 +1,484 @@
+{
+  "item": [
+    {
+      "id": "1002da9e-c031-41c8-9fa0-3b20d60f0efd",
+      "name": "Devices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ad23451-3748-4321-8fbd-1d09cc3ae310",
+          "name": "List All Devices",
+          "request": {
+            "name": "List All Devices",
+            "description": {
+              "content": "Returns a list of all monitored devices in the Environet Alert system including device name, status, sensor readings, and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "siteName",
+                  "value": "<string>",
+                  "description": "Filter by site name"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupPath",
+                  "value": "<string>",
+                  "description": "Filter by group path"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by device status"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b0ad783-8200-4063-908d-3e29e5948421",
+              "name": "List of devices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "siteName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"deviceId\": \"string\",\n    \"deviceName\": \"string\",\n    \"siteName\": \"string\",\n    \"groupPath\": \"string\",\n    \"category\": \"string\",\n    \"status\": {\n      \"overall\": \"WARNING\",\n      \"alarmCount\": 8134,\n      \"warningCount\": 6697,\n      \"infoCount\": 9565,\n      \"downCount\": 2077,\n      \"faultCount\": 7302,\n      \"maintenanceCount\": 4647,\n      \"disabledCount\": 2857,\n      \"normalCount\": 6707,\n      \"unknownCount\": 2224\n    },\n    \"lastUpdated\": \"1982-02-09T21:55:23.462Z\"\n  },\n  {\n    \"deviceId\": \"string\",\n    \"deviceName\": \"string\",\n    \"siteName\": \"string\",\n    \"groupPath\": \"string\",\n    \"category\": \"string\",\n    \"status\": {\n      \"overall\": \"WARNING\",\n      \"alarmCount\": 8671,\n      \"warningCount\": 168,\n      \"infoCount\": 3680,\n      \"downCount\": 6211,\n      \"faultCount\": 5671,\n      \"maintenanceCount\": 3976,\n      \"disabledCount\": 2838,\n      \"normalCount\": 680,\n      \"unknownCount\": 6043\n    },\n    \"lastUpdated\": \"1996-05-03T09:26:40.025Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c6447f4-f172-40f3-8838-9ceb0b3bbdbb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "siteName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "groupPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9355,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bbd2f56-40ce-4e38-82f6-4172a5e71761",
+          "name": "Get Device by ID",
+          "request": {
+            "name": "Get Device by ID",
+            "description": {
+              "content": "Returns detailed information about a specific monitored device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "devices",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) Unique device identifier"
+                },
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fa6591c-94b1-48ca-9113-b1af93d9f9a5",
+              "name": "Device details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Unique device identifier"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deviceId\": \"string\",\n  \"deviceName\": \"string\",\n  \"siteName\": \"string\",\n  \"groupPath\": \"string\",\n  \"category\": \"string\",\n  \"status\": {\n    \"overall\": \"WARNING\",\n    \"alarmCount\": 3534,\n    \"warningCount\": 2835,\n    \"infoCount\": 7751,\n    \"downCount\": 5408,\n    \"faultCount\": 5350,\n    \"maintenanceCount\": 1746,\n    \"disabledCount\": 3629,\n    \"normalCount\": 4696,\n    \"unknownCount\": 1224\n  },\n  \"lastUpdated\": \"1950-12-22T14:09:46.737Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "168c8b55-5ce6-4d01-8029-18f0d4f043b8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Unique device identifier"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9355,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84a3eca7-6205-4c4b-a038-f1c2bc712c14",
+              "name": "Device not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "devices",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) Unique device identifier"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9355,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Environet Alert installation",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "environet-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environet-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b06a8ee-e592-4e16-8255-648d56012f43",
+    "name": "Vertiv Environet Alert REST Alarms Devices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.\n\nContact Support:\n Name: Vertiv Support",
+      "type": "text/plain"
+    }
+  }
+}

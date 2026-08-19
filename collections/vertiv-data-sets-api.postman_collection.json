@@ -1,0 +1,439 @@
+{
+  "item": [
+    {
+      "id": "72eab949-9753-4009-82be-56c2d378f746",
+      "name": "Data Sets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35ad4e68-239f-451e-81c4-8cb9b99752a9",
+          "name": "List All Data Sets",
+          "request": {
+            "name": "List All Data Sets",
+            "description": {
+              "content": "Returns the top-level list of data set entities available in the Environet Alert system. Each data set entity represents a category of infrastructure data such as groups, locations, racks, assets, devices, circuits, and points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8697d228-6652-4cea-9f75-6ad6c6e9dd52",
+              "name": "List of data set entities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"category\": \"GROUP\",\n    \"categoryId\": \"string\",\n    \"displayName\": \"string\",\n    \"path\": \"string\",\n    \"status\": {\n      \"overall\": \"WARNING\",\n      \"alarmCount\": 6652,\n      \"warningCount\": 8808,\n      \"infoCount\": 4607,\n      \"downCount\": 4977,\n      \"faultCount\": 8935,\n      \"maintenanceCount\": 7045,\n      \"disabledCount\": 7827,\n      \"normalCount\": 4391,\n      \"unknownCount\": 2815\n    },\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\"\n      }\n    ]\n  },\n  {\n    \"category\": \"DEVICE\",\n    \"categoryId\": \"string\",\n    \"displayName\": \"string\",\n    \"path\": \"string\",\n    \"status\": {\n      \"overall\": \"DOWN\",\n      \"alarmCount\": 6281,\n      \"warningCount\": 6613,\n      \"infoCount\": 9988,\n      \"downCount\": 6184,\n      \"faultCount\": 6541,\n      \"maintenanceCount\": 9814,\n      \"disabledCount\": 9666,\n      \"normalCount\": 3197,\n      \"unknownCount\": 2780\n    },\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54ecc77b-ee07-4c9c-ad1c-4ef77b8a65a3",
+              "name": "Unauthorized - missing or invalid session token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6318,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72a975ae-8fa7-471f-97c4-572ce2ecc173",
+          "name": "Get Data Set by Category",
+          "request": {
+            "name": "Get Data Set by Category",
+            "description": {
+              "content": "Returns entities for a specific data category. Supported categories include GROUP, LOCATION, RACK, ASSET, DEVICE, CIRCUIT, POINT, Tenant, Maintenance, and ALARM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets",
+                ":category"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "category",
+                  "description": "(Required) The data set category to retrieve"
+                },
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "86844386-59c5-4af4-bf3a-5ba53193a818",
+              "name": "Data set entities for the specified category",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category",
+                      "description": "(Required) The data set category to retrieve"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"category\": \"LOCATION\",\n  \"categoryId\": \"string\",\n  \"displayName\": \"string\",\n  \"path\": \"string\",\n  \"status\": {\n    \"overall\": \"MAINTENANCE\",\n    \"alarmCount\": 4577,\n    \"warningCount\": 5891,\n    \"infoCount\": 4371,\n    \"downCount\": 6970,\n    \"faultCount\": 5038,\n    \"maintenanceCount\": 4663,\n    \"disabledCount\": 5285,\n    \"normalCount\": 9544,\n    \"unknownCount\": 7167\n  },\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d87bffb7-4e7e-4e7d-9978-8e3067402871",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category",
+                      "description": "(Required) The data set category to retrieve"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6318,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42c243cb-42f0-4638-820f-ec30d5f2ec6e",
+              "name": "Category not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category",
+                      "description": "(Required) The data set category to retrieve"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6318,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Environet Alert installation",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "environet-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environet-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "595227f4-019e-420e-be63-4bc46a6f959e",
+    "name": "Vertiv Environet Alert REST Alarms Data Sets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.\n\nContact Support:\n Name: Vertiv Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "0f2d5533-723b-4873-a352-17f0ddafb022",
+      "name": "Circuits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6bb5c945-ff4c-404a-8cf1-ec86ea2a600c",
+          "name": "List All Circuits",
+          "request": {
+            "name": "List All Circuits",
+            "description": {
+              "content": "Returns all electrical circuits monitored by the Environet Alert system including current, voltage, and power readings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "circuits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "circuitName",
+                  "value": "<string>",
+                  "description": "Filter by circuit name"
+                },
+                {
+                  "disabled": false,
+                  "key": "siteName",
+                  "value": "<string>",
+                  "description": "Filter by site name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Environet Alert installation",
+                  "type": "any",
+                  "value": "{{environet-host}}",
+                  "key": "environet-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Auth-Token"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1dc81bde-5646-4593-848e-17b583b32193",
+              "name": "List of circuits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "circuits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "circuitName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "siteName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"circuitId\": \"string\",\n    \"circuitName\": \"string\",\n    \"siteName\": \"string\",\n    \"currentAmps\": 8117.91547890048,\n    \"voltageVolts\": 41.34549481073391,\n    \"powerWatts\": 5997.643419025707,\n    \"status\": {\n      \"overall\": \"DISABLED\",\n      \"alarmCount\": 518,\n      \"warningCount\": 8307,\n      \"infoCount\": 639,\n      \"downCount\": 284,\n      \"faultCount\": 5703,\n      \"maintenanceCount\": 2049,\n      \"disabledCount\": 6657,\n      \"normalCount\": 7696,\n      \"unknownCount\": 9961\n    }\n  },\n  {\n    \"circuitId\": \"string\",\n    \"circuitName\": \"string\",\n    \"siteName\": \"string\",\n    \"currentAmps\": 8419.879768915416,\n    \"voltageVolts\": 7495.5477648196365,\n    \"powerWatts\": 9392.006416687267,\n    \"status\": {\n      \"overall\": \"WARNING\",\n      \"alarmCount\": 9117,\n      \"warningCount\": 9397,\n      \"infoCount\": 9657,\n      \"downCount\": 7069,\n      \"faultCount\": 3647,\n      \"maintenanceCount\": 8286,\n      \"disabledCount\": 8652,\n      \"normalCount\": 1753,\n      \"unknownCount\": 3758\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d234154-4260-4941-9922-59dce9d21604",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "circuits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "circuitName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "siteName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Environet Alert installation",
+                      "type": "any",
+                      "value": "{{environet-host}}",
+                      "key": "environet-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Auth-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8922,\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Environet Alert installation",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "environet-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{environet-host}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "265a70fb-71c0-41de-ae1b-6e9916739276",
+    "name": "Vertiv Environet Alert REST Alarms Circuits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.\n\nContact Support:\n Name: Vertiv Support",
+      "type": "text/plain"
+    }
+  }
+}
