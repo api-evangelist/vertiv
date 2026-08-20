@@ -23,6 +23,13 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/vertiv.png
 tags:
   - Critical Infrastructure
+  - Data-Center
+  - DCIM
+  - Infrastructure Monitoring
+  - Power Management
+  - UPS
+tags_raw:
+  - Critical Infrastructure
   - Data Center
   - DCIM
   - Infrastructure Monitoring
@@ -184,6 +191,8 @@ apis:
   humanURL: >-
     https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
   tags:
+  - Datasets
+  tags_raw:
   - Data Sets
   properties:
   - type: OpenAPI
