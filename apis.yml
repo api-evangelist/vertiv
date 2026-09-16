@@ -197,27 +197,6 @@ apis:
   - type: SpectralRuleset
     url: >-
       https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
-- aid: vertiv:vertiv-data-sets-api
-  name: Vertiv Data Sets API
-  description: The Data Sets API from Vertiv — 2 operation(s) for data sets.
-  humanURL: >-
-    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/software/vertiv-environet-alert/
-  tags:
-  - Datasets
-  tags_raw:
-  - Data Sets
-  properties:
-  - type: OpenAPI
-    url: openapi/vertiv-data-sets-api-openapi.yml
-  - type: Documentation
-    url: >-
-      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
-  - type: JSONSchema
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
-  - type: SpectralRuleset
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
 - aid: vertiv:vertiv-devices-api
   name: Vertiv Devices API
   description: The Devices API from Vertiv — 2 operation(s) for devices.
@@ -266,6 +245,25 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/vertiv-sensors-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/json-schema/vertiv-alarm-schema.json
+  - type: SpectralRuleset
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
+- aid: vertiv:vertiv-datasets-api
+  name: Vertiv Datasets API
+  description: The Datasets API from Vertiv — 2 operation(s) for datasets.
+  humanURL: >-
+    https://www.vertiv.com/en-us/products-catalog/monitoring-control-and-management/digital-infrastructure-solutions/vertiv-avocent-mp1000-management-platform/
+  tags:
+  - Datasets
+  properties:
+  - type: OpenAPI
+    url: openapi/vertiv-datasets-api-openapi.yml
   - type: Documentation
     url: >-
       https://www.vertiv.com/48ea2d/globalassets/products/monitoring-control-and-management/software/vertiv-environet-alert-public-rest-api-v1-guide-sl-70596.pdf
