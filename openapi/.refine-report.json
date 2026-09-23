@@ -1,14 +1,7 @@
 {
   "provider": "vertiv",
   "sources": [
-    "vertiv-alarms-api-openapi.yml",
-    "vertiv-assets-api-openapi.yml",
-    "vertiv-authentication-api-openapi.yml",
-    "vertiv-circuits-api-openapi.yml",
-    "vertiv-data-sets-api-openapi.yml",
-    "vertiv-devices-api-openapi.yml",
-    "vertiv-racks-api-openapi.yml",
-    "vertiv-sensors-api-openapi.yml"
+    "_original/vertiv-environet-alert-openapi.yml"
   ],
   "outputs": [
     "vertiv-alarms-api-openapi.yml",
@@ -20,9 +13,33 @@
     "vertiv-racks-api-openapi.yml",
     "vertiv-sensors-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "vertiv-environet-alert-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Alarms",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Assets",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Authentication",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Circuits",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Data Sets",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Devices",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Racks",
+    "vertiv-environet-alert-openapi.yml: declared missing tag: Sensors",
+    "superseded outputs removed: vertiv-datasets-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 12 total)"
+  ],
+  "skipped": [
+    "vertiv-alarms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-circuits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-datasets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-racks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "vertiv-sensors-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

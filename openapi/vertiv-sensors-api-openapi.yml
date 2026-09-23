@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Vertiv Environet Alert REST Alarms Sensors API
+  title: Vertiv Environet Alert REST Sensors API
   description: The Vertiv Environet Alert Public REST API provides programmatic access to Vertiv's DCIM monitoring platform. The API enables retrieval of device data, sensor readings, environmental metrics, alerts, alarms, circuit information, rack details, and asset management data from data center environments. The API is designed for integration with third-party DCIM platforms, ITSM tools, and custom automation workflows.
   version: 2.0.0
   contact:
