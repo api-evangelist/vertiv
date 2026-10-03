@@ -68,6 +68,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     Alarm:
       type: object
       description: An active alarm in the Environet Alert system
@@ -98,19 +111,6 @@ components:
         acknowledged:
           type: boolean
           description: Whether the alarm has been acknowledged
-    Error:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: integer
-          description: HTTP error code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
   securitySchemes:
     sessionToken:
       type: apiKey

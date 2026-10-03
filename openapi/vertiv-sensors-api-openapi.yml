@@ -58,6 +58,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     Sensor:
       type: object
       description: A sensor data point in the Environet system
@@ -96,19 +109,6 @@ components:
           type: string
           format: date-time
           description: Timestamp of last reading
-    Error:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: integer
-          description: HTTP error code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
   securitySchemes:
     sessionToken:
       type: apiKey

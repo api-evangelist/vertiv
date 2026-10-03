@@ -58,6 +58,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     Circuit:
       type: object
       description: An electrical circuit being monitored
@@ -128,19 +141,6 @@ components:
         unknownCount:
           type: integer
           description: Number of items in unknown state
-    Error:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: integer
-          description: HTTP error code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
   securitySchemes:
     sessionToken:
       type: apiKey

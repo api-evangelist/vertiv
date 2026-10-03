@@ -58,24 +58,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Rack:
+    Error:
       type: object
-      description: A monitored rack in the data center
+      description: Error response
       properties:
-        rackId:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
           type: string
-          description: Unique rack identifier
-        rackName:
+          description: Error message
+        details:
           type: string
-          description: Rack display name
-        siteName:
-          type: string
-          description: Site location of the rack
-        groupPath:
-          type: string
-          description: Hierarchical location path
-        status:
-          $ref: '#/components/schemas/StatusSummary'
+          description: Additional error details
     StatusSummary:
       type: object
       description: Status summary with alarm and event counts
@@ -119,19 +114,24 @@ components:
         unknownCount:
           type: integer
           description: Number of items in unknown state
-    Error:
+    Rack:
       type: object
-      description: Error response
+      description: A monitored rack in the data center
       properties:
-        code:
-          type: integer
-          description: HTTP error code
-        message:
+        rackId:
           type: string
-          description: Error message
-        details:
+          description: Unique rack identifier
+        rackName:
           type: string
-          description: Additional error details
+          description: Rack display name
+        siteName:
+          type: string
+          description: Site location of the rack
+        groupPath:
+          type: string
+          description: Hierarchical location path
+        status:
+          $ref: '#/components/schemas/StatusSummary'
   securitySchemes:
     sessionToken:
       type: apiKey
