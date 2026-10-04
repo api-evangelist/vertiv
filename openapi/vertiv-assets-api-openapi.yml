@@ -71,27 +71,6 @@ components:
         details:
           type: string
           description: Additional error details
-    Asset:
-      type: object
-      description: An IT asset tracked in the Environet system
-      properties:
-        assetId:
-          type: string
-          description: Unique asset identifier
-        assetName:
-          type: string
-          description: Asset display name
-        rackName:
-          type: string
-          description: Rack the asset is mounted in
-        siteName:
-          type: string
-          description: Site location
-        assetType:
-          type: string
-          description: Type of asset (server, switch, etc.)
-        status:
-          $ref: '#/components/schemas/StatusSummary'
     StatusSummary:
       type: object
       description: Status summary with alarm and event counts
@@ -135,6 +114,27 @@ components:
         unknownCount:
           type: integer
           description: Number of items in unknown state
+    Asset:
+      type: object
+      description: An IT asset tracked in the Environet system
+      properties:
+        assetId:
+          type: string
+          description: Unique asset identifier
+        assetName:
+          type: string
+          description: Asset display name
+        rackName:
+          type: string
+          description: Rack the asset is mounted in
+        siteName:
+          type: string
+          description: Site location
+        assetType:
+          type: string
+          description: Type of asset (server, switch, etc.)
+        status:
+          $ref: '#/components/schemas/StatusSummary'
   securitySchemes:
     sessionToken:
       type: apiKey
