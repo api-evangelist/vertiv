@@ -275,6 +275,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/vertiv/refs/heads/main/rules/vertiv-environet-rules.yml
 common:
+  - type: Plans
+    url: plans/vertiv-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/vertiv-rate-limits.yml
+  - type: FinOps
+    url: finops/vertiv-finops.yml
   - type: AgenticAccess
     url: agentic-access/vertiv-agentic-access.yml
   - type: DomainSecurity
