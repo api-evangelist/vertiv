@@ -1,0 +1,30 @@
+# Front Door AI Index — vertiv — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: vertiv
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: www.vertiv.com
+  final_host: www.vertiv.com
+  ownership: own
+  owner: vertiv
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 31
+  band: 6
+  band_label: dominant
+  host_score: 31
+  density: 7.79
+  words: 3980
+  tiers:
+    agentic: 0
+    core: 31
+    model: 0
+  ambiguous: 4
+  top_terms:
+    AI: 27
+    artificial intelligence: 4
+    intelligence: 4
