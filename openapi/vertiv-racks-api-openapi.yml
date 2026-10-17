@@ -58,19 +58,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: integer
-          description: HTTP error code
-        message:
-          type: string
-          description: Error message
-        details:
-          type: string
-          description: Additional error details
     Rack:
       type: object
       description: A monitored rack in the data center
@@ -89,6 +76,19 @@ components:
           description: Hierarchical location path
         status:
           $ref: '#/components/schemas/StatusSummary'
+    Error:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: integer
+          description: HTTP error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
     StatusSummary:
       type: object
       description: Status summary with alarm and event counts
